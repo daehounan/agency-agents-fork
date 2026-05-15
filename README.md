@@ -1,6 +1,6 @@
 # Agency Agents (Fork)
 
-A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **26 routing skills** + **1 prompt-suggestion hook** packaged for our Claude Code + ecc plugin setup on Windows.
+A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **23 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **1 prompt-suggestion hook** packaged for our Claude Code + ecc plugin setup on Windows.
 
 ## What changed vs upstream
 
@@ -8,7 +8,7 @@ A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/a
 |---|---|
 | China-market agents removed | 22 files dropped (see [excluded list](#excluded-agents)) |
 | Japanese Business Navigator added | New 216-line agent: 稟議 / 根回し / KY / 飲み会 / 報連相 |
-| 26 routing skills added | Auto-invoke skills that delegate to the right specialist (see [Skills](#skills)) |
+| 23 routing skills added | Auto-invoke skills that delegate to the right specialist (see [Skills](#skills)). Consolidated to avoid duplicates with `ecc:*`, `engineering:*`, `design:*`, `operations:*` etc. |
 | UserPromptSubmit hook | Optional regex-based agent-suggestion hook (`hooks/suggest-agents.ps1`) |
 | Windows tooling | PowerShell `install.ps1` / `convert.ps1` / `migrate-ecc.ps1` replace bash scripts |
 | Overlap mapping | See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) — which fork agents duplicate existing ecc plugins |
@@ -136,7 +136,30 @@ vibe: One-line vibe statement.
 
 ## Skills
 
-26 routing skills in `skills/` auto-invoke based on description matching, delegating to the appropriate specialist agent(s).
+23 routing skills in `skills/` auto-invoke based on description matching, delegating to the appropriate specialist agent(s). The original 26 were consolidated — duplicates with existing skills (`engineering:*`, `design:*`, `ecc:autonomous-agent-harness`, `ecc:mcp-server-patterns`, etc.) were removed (3 dropped, 3 slimmed) so each routing skill has genuine net-new value.
+
+### Consolidation history
+
+| Removed (3) | Why | Use instead |
+|---|---|---|
+| `general-engineering-routing` | 100% overlap with `engineering:*` (10 skills) + ecc agents | `ecc:architect`, `ecc:code-reviewer`, `engineering:architecture`, `engineering:debug` |
+| `ai-infra-routing` | Overlap with `ecc:mcp-server-patterns`, `ecc:autonomous-agent-harness`, `anthropic-skills:mcp-builder`, `ruflo-swarm:*` | Those skills directly |
+| `design-routing` | Overlap with `design:*` (7 skills) | `design:design-critique`, `design:design-system`, etc. |
+
+| Slimmed (3) | Original scope | Now covers only |
+|---|---|---|
+| `compliance-audit-routing` | SOC 2/ISO/HIPAA + smart contract + n8n | Smart contract + n8n only (SOC 2 etc. → `operations:compliance-tracking`, `anthropic-skills:security-audit-engine`) |
+| `knowledge-content-routing` | Zettelkasten + doc generation + tech writer | Zettelkasten + corp training only (formats → `anthropic-skills:pptx/docx/pdf/xlsx`) |
+| `product-discovery-routing` | 5 product agents | Behavioral nudge + trend researcher persona only (sprint/PRD/roadmap → `product-management:*`) |
+
+### Install skills
+
+```powershell
+.\scripts\install.ps1 -WithSkills    # install agents + skills
+.\scripts\install.ps1 -SkillsOnly    # install only skills (~/.claude/skills/)
+```
+
+### Skill roster (23)
 
 ### Install skills
 
@@ -165,13 +188,11 @@ vibe: One-line vibe statement.
 | `finance-analysis` | 5 agents | bookkeeper / FP&A / DCF / tax |
 | `worldbuilding-rigor` | 5 agents | anthropologist / geographer / historian / narratologist / psychologist |
 | `qa-testing-routing` | 8 agents | evidence / reality / perf / API / a11y |
-| `compliance-audit-routing` | 3 agents | SOC2 / smart contract / automation governance |
-| `knowledge-content-routing` | 4 agents | Zettelkasten / doc gen / corp training / tech writer |
+| `compliance-audit-routing` | 2 agents (slim) | smart contract + n8n governance only |
+| `knowledge-content-routing` | 2 agents (slim) | Zettelkasten + corporate training only |
 | `data-ops-routing` | 3 agents | sales extraction / consolidation / report dispatch |
-| `design-routing` | 8 agents | UI / UX / brand / whimsy / inclusive imagery |
-| `product-discovery-routing` | 5 agents | sprint / trend / feedback / nudge / PM |
+| `product-discovery-routing` | 2 agents (slim) | behavioral nudge + trend researcher only |
 | `project-management-routing` | 6 agents | producer / shepherd / Jira / experiment |
-| `ai-infra-routing` | 7 agents | orchestrator / LSP / MCP / identity |
 | `support-routing` | 12 agents | support / analytics / infra / civil eng / accounts payable |
 | `strategy-nexus` | NEXUS playbook | 7 phases + 4 scenarios + handoff protocols |
 | `agency-roster` | Discovery utility | Browse the full 179-agent collection |

@@ -1,29 +1,31 @@
 ---
 name: compliance-audit-routing
-description: Compliance, audit, and governance specialist routing for SOC 2, ISO 27001, HIPAA, PCI-DSS, smart contract security, and business automation governance. Use when the user asks about preparing for a SOC 2 audit, building evidence collection for ISO 27001, smart contract security audit (Solidity / EVM vulnerabilities), gas optimization review, DeFi protocol audit, n8n / business automation risk assessment, or audit governance frameworks. Triggers on SOC 2, ISO 27001, HIPAA audit, PCI-DSS, smart contract audit, blockchain audit, gas optimization, DeFi audit, reentrancy, n8n governance, automation audit, RACI, control framework.
+description: Two niche audit specialists not covered by existing operations/finance/ecc skills — smart contract security audit (Solidity / EVM / DeFi) and business automation governance (n8n workflow auditing). Use when the user asks about smart contract audit, reentrancy / oracle manipulation / gas optimization in DeFi, or evaluating and governing n8n / Zapier / business automation workflows at scale. For SOC 2 / ISO 27001 / HIPAA / PCI-DSS / SOX, prefer existing skills. Triggers on smart contract audit, blockchain audit, gas optimization audit, DeFi audit, reentrancy, oracle manipulation, n8n governance, workflow audit, automation governance.
 ---
 
-# Compliance & Audit Routing Skill
+# Compliance & Audit Routing Skill (Niche)
 
-When this skill activates, route based on the compliance domain.
+**Scope intentionally narrow.** For mainstream compliance work use existing skills:
+- SOC 2 / ISO 27001 / HIPAA / PCI-DSS evidence collection → `operations:compliance-tracking` + `anthropic-skills:security-audit-engine`
+- Financial audit / SOX testing / audit support → `finance:audit-support` + `finance:sox-testing`
+- General codebase security review → `ecc:security-review` + `ecc:security-scan`
+- HIPAA in code → `ecc:hipaa-compliance` / `ecc:healthcare-phi-compliance`
+- Legal compliance check → `legal:compliance-check`
+- Operational risk assessment → `operations:risk-assessment`
+- Vendor compliance review → `operations:vendor-review`
+- Bounty / vulnerability hunting → `ecc:security-bounty-hunter`
 
-## Routing matrix
+## When to use THIS skill
+
+Only when the audit work is one of these two niches:
 
 | User signal | Agent to invoke |
 |---|---|
-| SOC 2 / ISO 27001 / HIPAA / PCI-DSS readiness, evidence, certification | `compliance-auditor` |
-| Smart contract security audit, exploit analysis, gas optimization, DeFi | `blockchain-security-auditor` |
-| Business automation governance, n8n audit, workflow risk assessment | `automation-governance-architect` |
+| Solidity / EVM / DeFi smart contract audit, exploit analysis, gas optimization, reentrancy, oracle manipulation | `blockchain-security-auditor` |
+| n8n / Zapier / business automation workflow governance, value/risk/maintainability assessment | `automation-governance-architect` |
 
-## Complementary
-
-- General codebase security review → `ecc:security-review` skill
-- Threat detection rules (SIEM/MITRE) → `niche-engineering-routing` skill
-- Legal compliance review (contracts) → `legal:compliance-check` skill
-- DeFi-specific AMM security patterns → `ecc:defi-amm-security` skill
+For both: complementary deep skills are `ecc:defi-amm-security` (DeFi-specific patterns), `ecc:evm-token-decimals` (EVM token math), and `ecc:automation-audit-ops` (automation ops).
 
 ## When NOT to use
 
-- Internal audit support (financial close, SOX) → `finance:sox-testing` / `finance:audit-support` skills
-- General PHI handling in code → `ecc:hipaa-compliance` / `ecc:healthcare-phi-compliance` skills
-- One-off contract risk flag in a law firm → `legal-firm-ops` skill
+Anything that maps cleanly to a SOC 2 / SOX / HIPAA / generic security workflow → use the dedicated skills above.

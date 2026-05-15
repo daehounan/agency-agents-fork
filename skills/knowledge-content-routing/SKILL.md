@@ -1,33 +1,32 @@
 ---
 name: knowledge-content-routing
-description: Knowledge management, document generation, and corporate training specialist routing. Use when the user wants to build a Zettelkasten-style knowledge base, generate PDF/PPTX/DOCX/XLSX documents from data, design enterprise training programs, write developer-facing technical documentation, or set up internal corporate learning systems. Triggers on Zettelkasten, knowledge base, atomic notes, document generation, PDF report, PPTX deck, DOCX template, XLSX report from code, training program, curriculum design, internal trainer, learning evaluation, technical writer, API reference, README.
+description: Two niche knowledge specialists not covered by existing document-format / documentation skills — Zettelkasten knowledge graph stewardship and enterprise training curriculum design. Use when the user wants to build a Luhmann-style atomic-note knowledge base with connectivity validation, or design a multi-track enterprise learning program with internal trainer development and effectiveness evaluation. For document generation by file format, use existing anthropic-skills. Triggers on Zettelkasten, Luhmann, atomic notes, connectivity validation, knowledge graph stewardship, enterprise training curriculum, internal trainer development, blended learning program design, learning effectiveness evaluation.
 ---
 
-# Knowledge & Content Routing Skill
+# Knowledge & Content Routing Skill (Niche)
 
-When this skill activates, route based on the knowledge artifact type.
+**Scope intentionally narrow.** For document generation by format use existing skills:
+- PDF → `anthropic-skills:pdf`
+- PPTX → `anthropic-skills:pptx`
+- DOCX → `anthropic-skills:docx`
+- XLSX → `anthropic-skills:xlsx`
+- Code-generated documents with charts (mixed format) → `specialized-document-generator` agent directly
 
-## Routing matrix
+For developer documentation use existing skills:
+- API reference, README, technical docs → `engineering:documentation` + `ecc:doc-updater` agent
+- Internal company comms → `internal-comms` / `internal-comms-20260419`
+- Document co-authoring workflow → `doc-coauthoring`
+- Skill creation → `anthropic-skills:skill-creator` / `ecc:skill-create`
+
+## When to use THIS skill
+
+Only when the work is one of these two niches:
 
 | User signal | Agent to invoke |
 |---|---|
-| Atomic notes, Zettelkasten, connected knowledge graph | `zk-steward` |
-| Code-generated PDF / PPTX / DOCX / XLSX with charts | `specialized-document-generator` |
-| Enterprise training curriculum, blended learning, trainer development | `corporate-training-designer` |
-| Developer documentation, API reference, README, tutorials | `engineering-technical-writer` |
-
-## Complementary
-
-- Skill creation / SKILL.md generation → `ecc:skill-create` skill or `anthropic-skills:skill-creator`
-- Anthropic-style PPTX → `anthropic-skills:pptx`
-- Anthropic-style DOCX → `anthropic-skills:docx`
-- Anthropic-style PDF → `anthropic-skills:pdf`
-- Anthropic-style XLSX → `anthropic-skills:xlsx`
-- Internal company communications drafting → `internal-comms` skill
+| Luhmann-style Zettelkasten, atomic-note knowledge base, connectivity validation, knowledge graph stewardship | `zk-steward` |
+| Enterprise training needs analysis, multi-track curriculum, internal trainer development, learning effectiveness evaluation | `corporate-training-designer` |
 
 ## When NOT to use
 
-- Marketing content / blog posts → `marketing-content-creator` or `marketing:content-creation`
-- Brand voice guidelines → `brand-voice:*` skills
-- Sales proposals → `sales-proposal-strategist` agent
-- Slide design (visual) → `anthropic-skills:canvas-design` or `ecc:frontend-slides`
+Generic document generation by file format → existing anthropic-skills. Generic technical writing → existing engineering skills.

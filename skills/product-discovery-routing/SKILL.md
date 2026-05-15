@@ -1,36 +1,31 @@
 ---
 name: product-discovery-routing
-description: Product management and discovery specialist routing covering sprint planning, market intelligence, feedback synthesis, behavioral nudge design, and full product lifecycle ownership. Use when the user asks about feature prioritization, agile sprint planning, market trend analysis, competitive intelligence, user feedback synthesis, behavioral psychology applied to engagement, or end-to-end product strategy and roadmap. Triggers on sprint planning, backlog prioritization, RICE, ICE scoring, market trend, competitive intelligence, opportunity assessment, feedback analysis, user insight, behavioral nudge, habit loop, engagement design, product roadmap, PRD, discovery, go-to-market.
+description: Two niche product discovery agents not covered by existing product-management skills — behavioral-nudge engineering (psychology applied to engagement) and the trend researcher persona (market intelligence with persona depth). Use when the user wants behavioral psychology applied to product engagement design, habit-loop architecture, motivational nudges, or wants the trend-researcher persona's narrative-rich market intelligence (distinct from product-management:competitive-brief which is structured). Triggers on behavioral nudge, habit loop, engagement design, motivational design, choice architecture, dark pattern review, nudge audit.
 ---
 
-# Product Discovery Routing Skill
+# Product Discovery Routing Skill (Niche)
 
-When this skill activates, route based on the product workflow phase.
+**Scope intentionally narrow.** For most product work use existing skills:
+- Sprint planning → `product-management:sprint-planning`
+- PRD / spec → `product-management:write-spec`
+- Roadmap → `product-management:roadmap-update`
+- Stakeholder update → `product-management:stakeholder-update`
+- Research synthesis → `product-management:synthesize-research`
+- Competitive brief → `product-management:competitive-brief`
+- Brainstorming → `product-management:brainstorm` / `product-management:product-brainstorming`
+- Metrics review → `product-management:metrics-review`
+- Feedback synthesis → `product-management:synthesize-research`
+- Interactive PRD → `ecc:prp-prd`
 
-## Routing matrix
+## When to use THIS skill
+
+Only when the work is one of these two niches:
 
 | User signal | Agent to invoke |
 |---|---|
-| Agile sprint planning, feature prioritization, backlog management | `product-sprint-prioritizer` |
-| Market intelligence, competitive analysis, opportunity assessment | `product-trend-researcher` |
-| User feedback collection, analysis, synthesis | `product-feedback-synthesizer` |
-| Behavioral psychology applied to engagement, habit loops, nudges | `product-behavioral-nudge-engine` |
-| Full product lifecycle, discovery → PRD → roadmap → GTM | `product-manager` |
-
-## Complementary skills
-
-- Spec writing → `product-management:write-spec`
-- Roadmap update → `product-management:roadmap-update`
-- Sprint planning ceremonies → `product-management:sprint-planning`
-- Stakeholder update → `product-management:stakeholder-update`
-- Research synthesis → `product-management:synthesize-research`
-- Product brainstorming → `product-management:brainstorm` or `product-management:product-brainstorming`
-- Competitive brief → `product-management:competitive-brief`
-- Metrics review → `product-management:metrics-review`
-- Interactive PRD generation → `ecc:prp-prd`
+| Behavioral psychology, habit loops, nudge architecture, engagement design, motivational systems | `product-behavioral-nudge-engine` |
+| Narrative-rich market trend analysis with persona depth (not structured competitive brief) | `product-trend-researcher` |
 
 ## When NOT to use
 
-- Engineering planning / refactoring plan → `ecc:planner` agent or `ecc:plan` skill
-- Marketing campaign → `marketing:*` skills
-- Sales-side qualification (MEDDPICC etc.) → `sales-methodology-routing` skill
+Anything covered by `product-management:*` — use those directly. They are stronger and more current.
