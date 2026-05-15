@@ -1,6 +1,6 @@
 # Agency Agents (Fork)
 
-A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **23 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **1 prompt-suggestion hook** packaged for our Claude Code + ecc plugin setup on Windows.
+A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **1 prompt-suggestion hook** + **ecosystem-wide duplicates audit** packaged for our Claude Code + ecc plugin setup on Windows.
 
 ## What changed vs upstream
 
@@ -8,7 +8,8 @@ A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/a
 |---|---|
 | China-market agents removed | 22 files dropped (see [excluded list](#excluded-agents)) |
 | Japanese Business Navigator added | New 216-line agent: 稟議 / 根回し / KY / 飲み会 / 報連相 |
-| 23 routing skills added | Auto-invoke skills that delegate to the right specialist (see [Skills](#skills)). Consolidated to avoid duplicates with `ecc:*`, `engineering:*`, `design:*`, `operations:*` etc. |
+| 24 routing skills added | Auto-invoke skills that delegate to the right specialist (see [Skills](#skills)). Consolidated to avoid duplicates with `ecc:*`, `engineering:*`, `design:*`, `operations:*` etc. Includes `skill-routing-arbitrator` for ecosystem-wide disambiguation. |
+| Ecosystem duplicates audit | [`docs/skill-ecosystem-duplicates.md`](docs/skill-ecosystem-duplicates.md) maps ~500 skills into preference clusters (versioned snapshots, legacy shims, cross-namespace duplicates, hooks) |
 | UserPromptSubmit hook | Optional regex-based agent-suggestion hook (`hooks/suggest-agents.ps1`) |
 | Windows tooling | PowerShell `install.ps1` / `convert.ps1` / `migrate-ecc.ps1` replace bash scripts |
 | Overlap mapping | See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) — which fork agents duplicate existing ecc plugins |
@@ -196,6 +197,7 @@ vibe: One-line vibe statement.
 | `support-routing` | 12 agents | support / analytics / infra / civil eng / accounts payable |
 | `strategy-nexus` | NEXUS playbook | 7 phases + 4 scenarios + handoff protocols |
 | `agency-roster` | Discovery utility | Browse the full 179-agent collection |
+| `skill-routing-arbitrator` | **Meta-skill** | Resolves which skill to use when multiple match (covers all ecosystem clusters) |
 
 ## Hook
 
