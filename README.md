@@ -1,15 +1,18 @@
 # Agency Agents (Fork)
 
-A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **178 specialist agent personas** across 15 divisions, packaged for our Claude Code + ecc plugin setup on Windows.
+A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **26 routing skills** + **1 prompt-suggestion hook** packaged for our Claude Code + ecc plugin setup on Windows.
 
 ## What changed vs upstream
 
 | Change | Detail |
 |---|---|
 | China-market agents removed | 22 files dropped (see [excluded list](#excluded-agents)) |
-| Windows tooling | PowerShell `install.ps1` / `convert.ps1` replace bash scripts |
+| Japanese Business Navigator added | New 216-line agent: 稟議 / 根回し / KY / 飲み会 / 報連相 |
+| 26 routing skills added | Auto-invoke skills that delegate to the right specialist (see [Skills](#skills)) |
+| UserPromptSubmit hook | Optional regex-based agent-suggestion hook (`hooks/suggest-agents.ps1`) |
+| Windows tooling | PowerShell `install.ps1` / `convert.ps1` / `migrate-ecc.ps1` replace bash scripts |
 | Overlap mapping | See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) — which fork agents duplicate existing ecc plugins |
-| Original count | 200 → 178 agents |
+| Original count | 200 → 178 (China removed) → 179 (Japanese added) |
 
 Upstream license (MIT) preserved. See `LICENSE`.
 
@@ -131,9 +134,55 @@ vibe: One-line vibe statement.
 ...
 ```
 
+## Skills
+
+26 routing skills in `skills/` auto-invoke based on description matching, delegating to the appropriate specialist agent(s).
+
+### Install skills
+
+```powershell
+.\scripts\install.ps1 -WithSkills    # install agents + skills
+.\scripts\install.ps1 -SkillsOnly    # install only skills (~/.claude/skills/)
+```
+
+### Skill roster
+
+| Skill | Routes to | Domain |
+|---|---|---|
+| `korean-business` | Korean Business Navigator | 품의 / nunchi / 회식 / KakaoTalk |
+| `japanese-business` | Japanese Business Navigator | 稟議 / 根回し / KY / 飲み会 / 報連相 |
+| `localization-cultural` | 3 agents | French ESN / cultural intel / ES↔EN translation |
+| `xr-spatial-routing` | 6 agents | visionOS / WebXR / Vision Pro / Metal |
+| `game-development-routing` | 19 agents | Unity / Unreal / Godot / Roblox / Blender |
+| `niche-engineering-routing` | 9 agents | embedded / voice AI / email intel / SIEM / CMS / AI remediation |
+| `general-engineering-routing` | 18 agents | frontend / backend / mobile / SRE / DevOps |
+| `paid-media-routing` | 7 agents | Google Ads / Meta / programmatic / tracking |
+| `social-platform-routing` | 11 agents | Twitter / TikTok / IG / Reddit / LinkedIn / YouTube |
+| `sales-methodology-routing` | 9 agents | MEDDPICC / SPIN / discovery / proposal / coach |
+| `legal-firm-ops` | 3 agents | intake / billing / document review |
+| `real-estate-mortgage` | 2 agents | buyer-seller / loan officer |
+| `customer-service-vertical` | 4 agents | general / healthcare / hospitality / retail |
+| `finance-analysis` | 5 agents | bookkeeper / FP&A / DCF / tax |
+| `worldbuilding-rigor` | 5 agents | anthropologist / geographer / historian / narratologist / psychologist |
+| `qa-testing-routing` | 8 agents | evidence / reality / perf / API / a11y |
+| `compliance-audit-routing` | 3 agents | SOC2 / smart contract / automation governance |
+| `knowledge-content-routing` | 4 agents | Zettelkasten / doc gen / corp training / tech writer |
+| `data-ops-routing` | 3 agents | sales extraction / consolidation / report dispatch |
+| `design-routing` | 8 agents | UI / UX / brand / whimsy / inclusive imagery |
+| `product-discovery-routing` | 5 agents | sprint / trend / feedback / nudge / PM |
+| `project-management-routing` | 6 agents | producer / shepherd / Jira / experiment |
+| `ai-infra-routing` | 7 agents | orchestrator / LSP / MCP / identity |
+| `support-routing` | 12 agents | support / analytics / infra / civil eng / accounts payable |
+| `strategy-nexus` | NEXUS playbook | 7 phases + 4 scenarios + handoff protocols |
+| `agency-roster` | Discovery utility | Browse the full 179-agent collection |
+
+## Hook
+
+`hooks/suggest-agents.ps1` is a `UserPromptSubmit` hook (manual activation, not auto-enabled). Silent on no-match, injects one-line agent hint on high-confidence regex pattern matches. See [`hooks/README.md`](hooks/README.md) for activation JSON.
+
 ## Overlap with existing ecc / Anthropic skills
 
-Many fork agents duplicate capabilities already provided by your ecc plugin and Anthropic skills. **Don't install duplicates** — see [`docs/ecc-overlap.md`](docs/ecc-overlap.md) for the side-by-side mapping. Recommended install set: **academic, game-development, spatial-computing, finance, strategy** (mostly net-new), plus cherry-picks from the others.
+Many fork agents duplicate capabilities already provided by your ecc plugin and Anthropic skills. Skills documented here cross-link to stronger alternatives (e.g., `general-engineering-routing` defers to `ecc:architect` and `ecc:code-reviewer` for those use cases). See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) for the side-by-side mapping.
 
 ## License
 
