@@ -1,0 +1,14 @@
+# Generated integration artifacts — regenerate with scripts/convert.ps1 or migrate-ecc.ps1
+integrations/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.orig
