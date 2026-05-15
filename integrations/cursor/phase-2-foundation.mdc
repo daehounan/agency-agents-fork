@@ -1,0 +1,9 @@
+﻿---
+description: 
+globs:
+alwaysApply: false
+---
+
+# 
+
+*Phase 2 is complete when the skeleton application is running, the CI/CD pipeline is operational, and the Evidence Collector has verified all foundation elements with screenshots.*

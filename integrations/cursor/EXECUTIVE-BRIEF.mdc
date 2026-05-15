@@ -1,0 +1,36 @@
+﻿---
+description: 
+globs:
+alwaysApply: false
+---
+
+# 
+
+## File Structure
+
+```
+strategy/
+?쒋?? EXECUTIVE-BRIEF.md              ??You are here
+?쒋?? QUICKSTART.md                   ??5-minute activation guide
+?쒋?? nexus-strategy.md               ??Complete operational doctrine
+?쒋?? playbooks/
+??  ?쒋?? phase-0-discovery.md        ??Intelligence & discovery
+??  ?쒋?? phase-1-strategy.md         ??Strategy & architecture
+??  ?쒋?? phase-2-foundation.md       ??Foundation & scaffolding
+??  ?쒋?? phase-3-build.md            ??Build & iterate (Dev?봓A loops)
+??  ?쒋?? phase-4-hardening.md        ??Quality & hardening
+??  ?쒋?? phase-5-launch.md           ??Launch & growth
+??  ?붴?? phase-6-operate.md          ??Operate & evolve
+?쒋?? coordination/
+??  ?쒋?? agent-activation-prompts.md ??Ready-to-use agent prompts
+??  ?붴?? handoff-templates.md        ??Standardized handoff formats
+?붴?? runbooks/
+    ?쒋?? scenario-startup-mvp.md     ??4-6 week MVP build
+    ?쒋?? scenario-enterprise-feature.md ??Enterprise feature development
+    ?쒋?? scenario-marketing-campaign.md ??Multi-channel campaign
+    ?붴?? scenario-incident-response.md  ??Production incident handling
+```
+
+---
+
+*NEXUS: 9 Divisions. 7 Phases. One Unified Strategy.*

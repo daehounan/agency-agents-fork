@@ -1,0 +1,9 @@
+﻿---
+description: 
+globs:
+alwaysApply: false
+---
+
+# 
+
+*Phase 3 is complete when all sprint tasks pass QA, all API endpoints are validated, performance baselines are met, and no critical bugs remain open.*

@@ -1,0 +1,188 @@
+﻿---
+description: 
+globs:
+alwaysApply: false
+---
+
+# 
+
+# ?뱼 Runbook: Multi-Channel Marketing Campaign
+
+> **Mode**: NEXUS-Micro to NEXUS-Sprint | **Duration**: 2-4 weeks | **Agents**: 10-15
+
+---
+
+## Scenario
+
+You're launching a coordinated marketing campaign across multiple channels. Content needs to be platform-specific, brand-consistent, and data-driven. The campaign needs to drive measurable acquisition and engagement.
+
+## Agent Roster
+
+### Campaign Core
+| Agent | Role |
+|-------|------|
+| Social Media Strategist | Campaign lead, cross-platform strategy |
+| Content Creator | Content production across all formats |
+| Growth Hacker | Acquisition strategy, funnel optimization |
+| Brand Guardian | Brand consistency across all channels |
+| Analytics Reporter | Performance tracking and optimization |
+
+### Platform Specialists
+| Agent | Role |
+|-------|------|
+| Twitter Engager | Twitter/X campaign execution |
+| TikTok Strategist | TikTok content and growth |
+| Instagram Curator | Instagram visual content |
+| Reddit Community Builder | Reddit authentic engagement |
+| App Store Optimizer | App store presence (if mobile) |
+
+### Support
+| Agent | Role |
+|-------|------|
+| Trend Researcher | Market timing and trend alignment |
+| Experiment Tracker | A/B testing campaign variations |
+| Executive Summary Generator | Campaign reporting |
+| Legal Compliance Checker | Ad compliance, disclosure requirements |
+
+## Execution Plan
+
+### Week 1: Strategy & Content Creation
+
+```
+Day 1-2: Campaign Strategy
+?쒋?? Social Media Strategist ??Cross-platform campaign strategy
+??  ?쒋?? Campaign objectives and KPIs
+??  ?쒋?? Target audience definition
+??  ?쒋?? Platform selection and budget allocation
+??  ?쒋?? Content calendar (4-week plan)
+??  ?붴?? Engagement strategy per platform
+???쒋?? Trend Researcher ??Market timing analysis
+??  ?쒋?? Trending topics to align with
+??  ?쒋?? Competitor campaign analysis
+??  ?붴?? Optimal launch timing
+???쒋?? Growth Hacker ??Acquisition funnel design
+??  ?쒋?? Landing page optimization plan
+??  ?쒋?? Conversion funnel mapping
+??  ?쒋?? Viral mechanics (referral, sharing)
+??  ?붴?? Channel budget allocation
+???쒋?? Brand Guardian ??Campaign brand guidelines
+??  ?쒋?? Campaign-specific visual guidelines
+??  ?쒋?? Messaging framework
+??  ?쒋?? Tone and voice for campaign
+??  ?붴?? Do's and don'ts
+???붴?? Legal Compliance Checker ??Ad compliance review
+    ?쒋?? Disclosure requirements
+    ?쒋?? Platform-specific ad policies
+    ?붴?? Regulatory constraints
+
+Day 3-5: Content Production
+?쒋?? Content Creator ??Multi-format content creation
+??  ?쒋?? Blog posts / articles
+??  ?쒋?? Email sequences
+??  ?쒋?? Landing page copy
+??  ?쒋?? Video scripts
+??  ?붴?? Social media copy (platform-adapted)
+???쒋?? Twitter Engager ??Twitter-specific content
+??  ?쒋?? Launch thread (10-15 tweets)
+??  ?쒋?? Daily engagement tweets
+??  ?쒋?? Reply templates
+??  ?붴?? Hashtag strategy
+???쒋?? TikTok Strategist ??TikTok content plan
+??  ?쒋?? Video concepts (3-5 videos)
+??  ?쒋?? Hook strategies
+??  ?쒋?? Trending audio/format alignment
+??  ?붴?? Posting schedule
+???쒋?? Instagram Curator ??Instagram content
+??  ?쒋?? Feed posts (carousel, single image)
+??  ?쒋?? Stories content
+??  ?쒋?? Reels concepts
+??  ?붴?? Visual aesthetic guidelines
+???붴?? Reddit Community Builder ??Reddit strategy
+    ?쒋?? Subreddit targeting
+    ?쒋?? Value-first post drafts
+    ?쒋?? Comment engagement plan
+    ?붴?? AMA preparation (if applicable)
+```
+
+### Week 2: Launch & Activate
+
+```
+Day 1: Pre-Launch
+?쒋?? All content queued and scheduled
+?쒋?? Analytics tracking verified
+?쒋?? A/B test variants configured
+?쒋?? Landing pages live and tested
+?붴?? Team briefed on engagement protocols
+
+Day 2-3: Launch
+?쒋?? Twitter Engager ??Launch thread + real-time engagement
+?쒋?? Instagram Curator ??Launch posts + stories
+?쒋?? TikTok Strategist ??Launch videos
+?쒋?? Reddit Community Builder ??Authentic community posts
+?쒋?? Content Creator ??Blog post published + email blast
+?쒋?? Growth Hacker ??Paid campaigns activated
+?붴?? Analytics Reporter ??Real-time dashboard monitoring
+
+Day 4-5: Optimize
+?쒋?? Analytics Reporter ??First 48-hour performance report
+?쒋?? Growth Hacker ??Channel optimization based on data
+?쒋?? Experiment Tracker ??A/B test early results
+?쒋?? Social Media Strategist ??Engagement strategy adjustment
+?붴?? Content Creator ??Response content based on reception
+```
+
+### Week 3-4: Sustain & Optimize
+
+```
+Daily:
+?쒋?? Platform agents ??Engagement and content posting
+?쒋?? Analytics Reporter ??Daily performance snapshot
+?붴?? Growth Hacker ??Funnel optimization
+
+Weekly:
+?쒋?? Social Media Strategist ??Campaign performance review
+?쒋?? Experiment Tracker ??A/B test results and new tests
+?쒋?? Content Creator ??New content based on performance data
+?붴?? Analytics Reporter ??Weekly campaign report
+
+End of Campaign:
+?쒋?? Analytics Reporter ??Comprehensive campaign analysis
+?쒋?? Growth Hacker ??ROI analysis and channel effectiveness
+?쒋?? Executive Summary Generator ??Campaign executive summary
+?붴?? Social Media Strategist ??Lessons learned and recommendations
+```
+
+## Campaign Metrics
+
+| Metric | Target | Owner |
+|--------|--------|-------|
+| Total reach | [Target based on budget] | Social Media Strategist |
+| Engagement rate | > 3% average across platforms | Platform agents |
+| Click-through rate | > 2% on CTAs | Growth Hacker |
+| Conversion rate | > 5% landing page | Growth Hacker |
+| Cost per acquisition | < [Target CAC] | Growth Hacker |
+| Brand sentiment | Net positive | Brand Guardian |
+| Content pieces published | [Target count] | Content Creator |
+| A/B tests completed | ??5 | Experiment Tracker |
+
+## Platform-Specific KPIs
+
+| Platform | Primary KPI | Secondary KPI | Agent |
+|----------|------------|---------------|-------|
+| Twitter/X | Impressions + engagement rate | Follower growth | Twitter Engager |
+| TikTok | Views + completion rate | Follower growth | TikTok Strategist |
+| Instagram | Reach + saves | Profile visits | Instagram Curator |
+| Reddit | Upvotes + comment quality | Referral traffic | Reddit Community Builder |
+| Email | Open rate + CTR | Unsubscribe rate | Content Creator |
+| Blog | Organic traffic + time on page | Backlinks | Content Creator |
+| Paid ads | ROAS + CPA | Quality score | Growth Hacker |
+
+## Brand Consistency Checkpoints
+
+| Checkpoint | When | Agent |
+|-----------|------|-------|
+| Content review before publishing | Every piece | Brand Guardian |
+| Visual consistency audit | Weekly | Brand Guardian |
+| Voice and tone check | Weekly | Brand Guardian |
+| Compliance review | Before launch + weekly | Legal Compliance Checker |
+
