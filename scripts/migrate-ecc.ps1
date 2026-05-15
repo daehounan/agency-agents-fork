@@ -77,7 +77,9 @@ function To-KebabSlug {
 
 function Parse-Frontmatter {
     param([string]$Path)
-    $raw = Get-Content $Path -Raw
+    # Read as UTF-8 explicitly — Windows PowerShell defaults to system codepage
+    # which mangles CJK characters and emojis in the source files.
+    $raw = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
     $lines = $raw -split "`r?`n"
     $fmStart = -1; $fmEnd = -1
     for ($i = 0; $i -lt $lines.Length; $i++) {
@@ -149,9 +151,11 @@ model: $model
 "@
         $newContent = "$fm`n`n$($parsed.Body)"
 
-        # Write to output (flat, slug-named, no division subfolder — matches ecc convention)
+        # Write to output (flat, slug-named, no division subfolder — matches ecc convention).
+        # Use .NET WriteAllText with UTF-8 NO BOM to match ecc plugin file conventions.
         $outPath = Join-Path $OutDir "$slug.md"
-        Set-Content -Path $outPath -Value $newContent -Encoding UTF8
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        [System.IO.File]::WriteAllText($outPath, $newContent, $utf8NoBom)
         $processed++
 
         $report += [PSCustomObject]@{
