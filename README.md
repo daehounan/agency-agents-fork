@@ -102,7 +102,7 @@ Upstream license (MIT) preserved. See `LICENSE`.
 - `study-abroad-advisor.md` (Chinese students)
 - `recruitment-specialist.md` (China hiring platforms)
 
-If you want any of these back, copy from the upstream tree at `C:\Users\andae\Projects\agency-agents-Shiven0504\agency-agents-main\agency-agents-main\`.
+If you want any of these back, copy them in from a fresh clone of the upstream `agency-agents` repository — this fork removed them.
 
 ## Agent file format
 

@@ -4,13 +4,14 @@
 # the agency-agents fork's specialist roster, and outputs a brief reminder
 # to the main Claude assistant suggesting which agents could be delegated to.
 #
-# Activation: add to ~/.claude/settings.json:
+# Activation: easiest path is `scripts\install.ps1 -WithHooks`. Or add manually
+# to ~/.claude/settings.json (substitute <fork-clone-path> with your local clone):
 #
 #   {
 #     "hooks": {
 #       "UserPromptSubmit": [
 #         {
-#           "command": "pwsh -NoProfile -File C:/Users/andae/Projects/agency-agents-fork/hooks/suggest-agents.ps1",
+#           "command": "pwsh -NoProfile -File <fork-clone-path>/hooks/suggest-agents.ps1",
 #           "description": "Suggest agency-agents specialists for matching prompts"
 #         }
 #       ]

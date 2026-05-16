@@ -3,14 +3,15 @@
 # Logs every Skill tool invocation to a JSONL file for later analysis.
 # Used to identify dead skills, frequently-fired clusters, and routing patterns.
 #
-# Activation: add to ~/.claude/settings.json under hooks.PreToolUse:
+# Activation: easiest path is `scripts\install.ps1 -WithHooks`. Or add manually
+# to ~/.claude/settings.json under hooks.PreToolUse (substitute <fork-clone-path>):
 #
 #   {
 #     "matcher": "Skill",
 #     "hooks": [
 #       {
 #         "type": "command",
-#         "command": "pwsh -NoProfile -File C:/Users/andae/Projects/agency-agents-fork/hooks/log-skill-fired.ps1"
+#         "command": "pwsh -NoProfile -File <fork-clone-path>/hooks/log-skill-fired.ps1"
 #       }
 #     ]
 #   }

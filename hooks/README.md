@@ -13,14 +13,18 @@ A `UserPromptSubmit` hook that scans incoming user prompts for high-confidence s
 
 ### Activation
 
-Add to `~/.claude/settings.json`:
+Easiest: run `scripts\install.ps1 -WithHooks` from the fork root and it
+registers this hook (plus the skill-telemetry hook) for you.
+
+Manual install — add to `~/.claude/settings.json`, substituting
+`<fork-clone-path>` with the absolute path to your local clone:
 
 ```json
 {
   "hooks": {
     "UserPromptSubmit": [
       {
-        "command": "pwsh -NoProfile -File C:/Users/andae/Projects/agency-agents-fork/hooks/suggest-agents.ps1",
+        "command": "pwsh -NoProfile -File <fork-clone-path>/hooks/suggest-agents.ps1",
         "description": "Suggest agency-agents specialists for matching prompts"
       }
     ]
