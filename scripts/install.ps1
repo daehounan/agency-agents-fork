@@ -1,14 +1,64 @@
 # install.ps1 - Install agency agents (and optionally skills) to Claude Code (Windows PowerShell)
-#
-# Usage:
-#   .\scripts\install.ps1                          # install all agents to ~/.claude/agents
-#   .\scripts\install.ps1 -Division engineering    # one division only
-#   .\scripts\install.ps1 -DryRun                  # preview, no copies
-#   .\scripts\install.ps1 -SkipExisting            # do not overwrite existing files
-#   .\scripts\install.ps1 -WithSkills              # also install skills to ~/.claude/skills
-#   .\scripts\install.ps1 -SkillsOnly              # install only skills, skip agents
-#   .\scripts\install.ps1 -WithHooks               # also register hooks in ~/.claude/settings.json
-#   .\scripts\install.ps1 -Target "$env:USERPROFILE\.claude\agents"
+
+<#
+.SYNOPSIS
+    Install agency-agents fork agents and skills to ~/.claude/, optionally registering hooks.
+
+.DESCRIPTION
+    Copies markdown agent definitions into ~/.claude/agents/ (and optionally skills into
+    ~/.claude/skills/). With -WithHooks, also registers the UserPromptSubmit + PreToolUse(Skill)
+    hooks in ~/.claude/settings.json by invoking install-hooks-in-settings.ps1.
+
+    Safe to re-run: existing files are overwritten unless -SkipExisting is used. Use -DryRun
+    to preview every action without writing anything.
+
+.PARAMETER Division
+    Restrict install to one division (e.g. engineering, finance, sales). When omitted, all
+    15 divisions are installed.
+
+.PARAMETER Target
+    Destination directory for agents. Defaults to ~/.claude/agents.
+
+.PARAMETER SkillsTarget
+    Destination directory for skills. Defaults to ~/.claude/skills.
+
+.PARAMETER DryRun
+    Preview every copy/overwrite without writing any files. Also forwarded to the hook
+    installer when combined with -WithHooks.
+
+.PARAMETER SkipExisting
+    Do not overwrite files that already exist at the destination.
+
+.PARAMETER WithSkills
+    Also install skills (in addition to agents).
+
+.PARAMETER SkillsOnly
+    Install only skills; skip the agent install step entirely.
+
+.PARAMETER WithHooks
+    After install, also register the suggest-agents (UserPromptSubmit) and skill-telemetry
+    (PreToolUse:Skill) hooks in ~/.claude/settings.json by invoking
+    install-hooks-in-settings.ps1. Idempotent — pre-existing entries are detected and skipped.
+
+.EXAMPLE
+    .\scripts\install.ps1
+    Install all 178 agents to ~/.claude/agents.
+
+.EXAMPLE
+    .\scripts\install.ps1 -Division engineering
+    Install only the engineering division.
+
+.EXAMPLE
+    .\scripts\install.ps1 -WithSkills -WithHooks
+    Full install: agents + skills + hooks registered in settings.json.
+
+.EXAMPLE
+    .\scripts\install.ps1 -DryRun -WithHooks
+    Preview the full install including hook registration; writes nothing.
+
+.LINK
+    https://github.com/daehounan/agency-agents-fork
+#>
 
 [CmdletBinding()]
 param(
