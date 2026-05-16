@@ -7,6 +7,7 @@
 #   .\scripts\install.ps1 -SkipExisting            # do not overwrite existing files
 #   .\scripts\install.ps1 -WithSkills              # also install skills to ~/.claude/skills
 #   .\scripts\install.ps1 -SkillsOnly              # install only skills, skip agents
+#   .\scripts\install.ps1 -WithHooks               # also register hooks in ~/.claude/settings.json
 #   .\scripts\install.ps1 -Target "$env:USERPROFILE\.claude\agents"
 
 [CmdletBinding()]
@@ -17,7 +18,8 @@ param(
     [switch]$DryRun,
     [switch]$SkipExisting,
     [switch]$WithSkills,
-    [switch]$SkillsOnly
+    [switch]$SkillsOnly,
+    [switch]$WithHooks
 )
 
 $ErrorActionPreference = 'Stop'
@@ -125,14 +127,28 @@ if ($WithSkills -or $SkillsOnly) {
     }
 }
 
-# === Hook reminder ===
-if (-not $SkillsOnly) {
-    $hookPath = Join-Path $repoRoot 'hooks\suggest-agents.ps1'
-    if (Test-Path $hookPath) {
+# === Hooks: explicit opt-in via -WithHooks, otherwise just remind ===
+$hookInstaller = Join-Path $repoRoot 'scripts\install-hooks-in-settings.ps1'
+$suggestHook   = Join-Path $repoRoot 'hooks\suggest-agents.ps1'
+
+if ($WithHooks) {
+    if (-not (Test-Path $hookInstaller)) {
         Write-Host ""
-        Write-Host "=== Optional: UserPromptSubmit hook ==="
-        Write-Host "To enable the agent-suggestion hook, add to ~/.claude/settings.json:"
-        Write-Host "  hooks.UserPromptSubmit -> command: pwsh -NoProfile -File $hookPath"
-        Write-Host "See hooks/README.md for the JSON snippet."
+        Write-Host "[!!] -WithHooks requested but installer not found at: $hookInstaller"
+    } else {
+        Write-Host ""
+        Write-Host "=== Hooks (-WithHooks) ==="
+        $hookArgs = @('-NoProfile','-File',$hookInstaller)
+        if ($DryRun) { $hookArgs += '-DryRun' }
+        & pwsh @hookArgs
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "[!!] Hook installer exited with code $LASTEXITCODE — agents/skills already installed."
+        }
     }
+} elseif (-not $SkillsOnly -and (Test-Path $suggestHook)) {
+    Write-Host ""
+    Write-Host "=== Optional: hooks (not installed) ==="
+    Write-Host "Re-run with -WithHooks to register UserPromptSubmit (agent suggestions)"
+    Write-Host "and PreToolUse(Skill) (skill telemetry) in ~/.claude/settings.json."
+    Write-Host "Or run scripts\install-hooks-in-settings.ps1 directly. See hooks/README.md."
 }

@@ -55,6 +55,9 @@ Upstream license (MIT) preserved. See `LICENSE`.
 
 # Custom target
 .\scripts\install.ps1 -Target "C:\custom\path"
+
+# Also register the suggest-agents + skill-telemetry hooks in ~/.claude/settings.json
+.\scripts\install.ps1 -WithHooks
 ```
 
 ## Convert to other tools
@@ -156,17 +159,9 @@ vibe: One-line vibe statement.
 ### Install skills
 
 ```powershell
-.\scripts\install.ps1 -WithSkills    # install agents + skills
-.\scripts\install.ps1 -SkillsOnly    # install only skills (~/.claude/skills/)
-```
-
-### Skill roster (23)
-
-### Install skills
-
-```powershell
-.\scripts\install.ps1 -WithSkills    # install agents + skills
-.\scripts\install.ps1 -SkillsOnly    # install only skills (~/.claude/skills/)
+.\scripts\install.ps1 -WithSkills              # install agents + skills
+.\scripts\install.ps1 -SkillsOnly              # install only skills (~/.claude/skills/)
+.\scripts\install.ps1 -WithSkills -WithHooks   # agents + skills + hooks (full install)
 ```
 
 ### Skill roster
