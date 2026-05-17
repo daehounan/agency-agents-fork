@@ -11,11 +11,11 @@ When this skill activates, identify which academic lens applies and delegate to 
 
 | User signal | Agent to invoke |
 |---|---|
-| Cultural systems, kinship, rituals, belief systems | `anthropologist` |
-| Physical/human geography, climate, cartography, settlement patterns | `geographer` |
-| Historical analysis, periodization, material culture | `historian` |
-| Story structure, plot patterns, character arcs, narrative theory | `narratologist` |
-| Character motivation, personality, cognitive patterns, trauma | `psychologist` |
+| Cultural systems, kinship, rituals, belief systems | `academic-anthropologist` |
+| Physical/human geography, climate, cartography, settlement patterns | `academic-geographer` |
+| Historical analysis, periodization, material culture | `academic-historian` |
+| Story structure, plot patterns, character arcs, narrative theory | `academic-narratologist` |
+| Character motivation, personality, cognitive patterns, trauma | `academic-psychologist` |
 
 ## When to invoke multiple
 
@@ -24,5 +24,5 @@ A fully realized fictional society usually needs anthropologist + geographer + h
 ## When NOT to use
 
 - Game mechanics or systems design → `game-designer` (separate skill)
-- Visual world-building (concept art prompts) → `image-prompt-engineer`
+- Visual world-building (concept art prompts) → `design-image-prompt-engineer`
 - Marketing copy for a published world → marketing agents

@@ -11,11 +11,11 @@ When this skill activates, route based on the financial discipline involved.
 
 | User signal | Agent to invoke |
 |---|---|
-| Month-end close, reconciliation, GAAP, internal controls | `bookkeeper--controller` |
-| Financial modeling, three-statement, DCF, scenario analysis | `financial-analyst` |
-| Budgeting, rolling forecasts, monthly business reviews | `fpa-analyst` |
-| Investment thesis, equity research, portfolio analysis, due diligence | `investment-researcher` |
-| Tax optimization, transfer pricing, ETR, audit defense | `tax-strategist` |
+| Month-end close, reconciliation, GAAP, internal controls | `finance-bookkeeper-controller` |
+| Financial modeling, three-statement, DCF, scenario analysis | `finance-financial-analyst` |
+| Budgeting, rolling forecasts, monthly business reviews | `finance-fpa-analyst` |
+| Investment thesis, equity research, portfolio analysis, due diligence | `finance-investment-researcher` |
+| Tax optimization, transfer pricing, ETR, audit defense | `finance-tax-strategist` |
 
 ## When NOT to use
 

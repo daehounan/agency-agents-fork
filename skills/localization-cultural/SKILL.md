@@ -20,7 +20,7 @@ When this skill activates, route to the regional / cultural specialist.
 ## Complementary
 
 - Visa / immigration document translation → `ecc:visa-doc-translate` skill
-- Inclusive image generation → `design-inclusive-visuals-specialist` agent (via `design-routing` skill)
+- Inclusive image generation → `design-inclusive-visuals-specialist` agent directly (use Agent tool; the former design-routing skill was consolidated into the `design:*` family)
 - Local SEO market entry → `anthropic-skills:local-seo-engine`
 
 ## When NOT to use

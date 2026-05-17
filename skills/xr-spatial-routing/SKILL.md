@@ -13,11 +13,11 @@ When this skill activates, route to the appropriate spatial-computing agent base
 |---|---|
 | Spatial UX, interaction patterns, immersive UI | `xr-interface-architect` |
 | visionOS native Swift app | `visionos-spatial-engineer` |
-| macOS spatial / Metal / high-performance 3D | `macos-spatialmetal-engineer` |
+| macOS spatial / Metal / high-performance 3D | `macos-spatial-metal-engineer` |
 | WebXR, browser-based AR/VR | `xr-immersive-developer` |
 | Cockpit / control-surface XR | `xr-cockpit-interaction-specialist` |
 | CLI / terminal tooling in XR context | `terminal-integration-specialist` |
 
 ## Combining with engineering agents
 
-For Vision Pro apps involving network/backend work, also invoke `backend-architect` in parallel. For visionOS UI shipping production, pair with `frontend-developer` for any companion web surfaces.
+For Vision Pro apps involving network/backend work, also invoke `engineering-backend-architect` in parallel. For visionOS UI shipping production, pair with `engineering-frontend-developer` for any companion web surfaces.

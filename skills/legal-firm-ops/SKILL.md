@@ -12,7 +12,7 @@ When this skill activates, route to the appropriate legal-vertical agent.
 | User signal | Agent to invoke |
 |---|---|
 | Prospect intake, conflict screening, retainer | `legal-client-intake` |
-| Time capture, billing narratives, IOLTA, collections | `legal-billing--time-tracking` |
+| Time capture, billing narratives, IOLTA, collections | `legal-billing-time-tracking` |
 | Contract review, risk flagging, version comparison | `legal-document-review` |
 | Codebase / corporate compliance review (NOT firm ops) | use ecc `security-reviewer` or `legal:compliance-check` skill instead |
 

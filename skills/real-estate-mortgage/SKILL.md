@@ -11,11 +11,11 @@ When this skill activates, route to the appropriate vertical agent.
 
 | User signal | Agent to invoke |
 |---|---|
-| Buyer/seller representation, offers, MLS, transaction coordination | `real-estate-buyer--seller` |
+| Buyer/seller representation, offers, MLS, transaction coordination | `real-estate-buyer-seller` |
 | Borrower intake, loan structuring, TRID, pipeline, closing | `loan-officer-assistant` |
 
 ## Cross-functional flow
 
 For a buyer needing a loan, invoke both agents in parallel:
-- `real-estate-buyer--seller` for the property/offer side
+- `real-estate-buyer-seller` for the property/offer side
 - `loan-officer-assistant` for the financing side

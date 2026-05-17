@@ -11,14 +11,14 @@ When this skill activates, route based on the type of QA work involved.
 
 | User signal | Agent to invoke |
 |---|---|
-| Visual regression, screenshot proof, bug documentation | `evidence-collector` |
-| Production readiness certification, release approval | `reality-checker` |
-| Test output analysis, metrics, coverage interpretation | `test-results-analyzer` |
-| Performance / load / speed testing | `performance-benchmarker` |
-| API endpoint validation, integration testing | `api-tester` |
-| WCAG audit, screen reader testing, ARIA verification | `accessibility-auditor` |
-| Software / tool evaluation, technology assessment | `tool-evaluator` |
-| Process analysis, workflow improvement, automation opportunity | `workflow-optimizer` |
+| Visual regression, screenshot proof, bug documentation | `testing-evidence-collector` |
+| Production readiness certification, release approval | `testing-reality-checker` |
+| Test output analysis, metrics, coverage interpretation | `testing-test-results-analyzer` |
+| Performance / load / speed testing | `testing-performance-benchmarker` |
+| API endpoint validation, integration testing | `testing-api-tester` |
+| WCAG audit, screen reader testing, ARIA verification | `testing-accessibility-auditor` |
+| Software / tool evaluation, technology assessment | `testing-tool-evaluator` |
+| Process analysis, workflow improvement, automation opportunity | `testing-workflow-optimizer` |
 
 ## Complementary skills (use together)
 

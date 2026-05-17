@@ -12,18 +12,18 @@ When this skill activates, route to the appropriate paid-media agent based on th
 | User signal | Agent to invoke |
 |---|---|
 | Account audit, competitive analysis, takeover prep | `paid-media-auditor` |
-| Account architecture, bidding, budget allocation | `ppc-campaign-strategist` |
-| Search term analysis, negative keywords | `search-query-analyst` |
-| GTM, GA4, conversion tracking, CAPI | `tracking--measurement-specialist` |
-| RSA copy, Meta creative, PMax assets | `ad-creative-strategist` |
-| GDN, DSPs, partner media, ABM display | `programmatic--display-buyer` |
-| Meta, LinkedIn, TikTok paid social | `paid-social-strategist` |
+| Account architecture, bidding, budget allocation | `paid-media-ppc-strategist` |
+| Search term analysis, negative keywords | `paid-media-search-query-analyst` |
+| GTM, GA4, conversion tracking, CAPI | `paid-media-tracking-specialist` |
+| RSA copy, Meta creative, PMax assets | `paid-media-creative-strategist` |
+| GDN, DSPs, partner media, ABM display | `paid-media-programmatic-buyer` |
+| Meta, LinkedIn, TikTok paid social | `paid-media-paid-social-strategist` |
 
 ## Account takeover sequence
 
 For full account takeovers, invoke in this order via separate Agent calls:
 1. `paid-media-auditor` (assessment)
-2. `tracking--measurement-specialist` (verify tracking accuracy first)
-3. `ppc-campaign-strategist` (rebuild architecture)
-4. `search-query-analyst` (clean wasted spend)
-5. `ad-creative-strategist` (refresh creative)
+2. `paid-media-tracking-specialist` (verify tracking accuracy first)
+3. `paid-media-ppc-strategist` (rebuild architecture)
+4. `paid-media-search-query-analyst` (clean wasted spend)
+5. `paid-media-creative-strategist` (refresh creative)
