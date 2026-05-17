@@ -1,0 +1,53 @@
+name: New routing skill
+description: Propose a new skills/<name>/SKILL.md routing entry
+labels: [skill, enhancement]
+body:
+  - type: input
+    id: skill-name
+    attributes:
+      label: Proposed skill name
+      description: kebab-case; will be both the directory name under `skills/` and the `name` field in frontmatter.
+      placeholder: e.g. crypto-defi-routing
+    validations:
+      required: true
+  - type: textarea
+    id: triggers
+    attributes:
+      label: User signals / triggers
+      description: What words, phrases, languages, or contexts should activate this skill? Be specific — vague triggers are worse than no skill.
+      placeholder: |
+        - "smart contract audit"
+        - "reentrancy" / "oracle manipulation"
+        - "토큰 가격 조작" (Korean)
+        - "DeFi exploit post-mortem"
+    validations:
+      required: true
+  - type: textarea
+    id: routing-matrix
+    attributes:
+      label: Routing matrix
+      description: For each trigger cluster, which existing agent or skill should it delegate to? If you need a new agent too, link a separate issue.
+      placeholder: |
+        | User signal | Target |
+        |---|---|
+        | reentrancy / oracle manipulation | engineering-solidity-smart-contract-engineer |
+        | smart contract audit | engineering-blockchain-security-auditor |
+        | exploit post-mortem | engineering-incident-response-commander |
+    validations:
+      required: true
+  - type: textarea
+    id: why-new
+    attributes:
+      label: Why isn't existing routing enough?
+      description: Which existing skills come close but miss the mark? Link to them. See `docs/ecc-overlap.md` and `docs/skill-ecosystem-duplicates.md` first.
+    validations:
+      required: true
+  - type: checkboxes
+    id: lint
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I have checked `docs/skill-ecosystem-duplicates.md` and no existing skill covers this.
+          required: true
+        - label: Description will be 80–800 chars and will include "Use when" or "Triggers on".
+          required: true

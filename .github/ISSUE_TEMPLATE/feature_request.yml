@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest an enhancement to the fork
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What feature
+      description: Concise description of what you want to be able to do.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this matters
+      description: What use case does this unlock? What's the cost of not having it?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Behavior X works as expected
+        - [ ] Documented in README
+        - [ ] Lint and CI pass
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Existing skills, agents, or workflows you tried first that didn't fit.
