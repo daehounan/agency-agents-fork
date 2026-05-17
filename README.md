@@ -2,6 +2,10 @@
 
 [![Lint Skills](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Agents](https://img.shields.io/badge/agents-179-brightgreen.svg)](#division-roster-post-exclusion)
+[![Skills](https://img.shields.io/badge/skills-24-blue.svg)](#skills)
+[![Security Policy](https://img.shields.io/badge/security-policy-orange.svg)](SECURITY.md)
+[![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell%207%2B-informational.svg)](#quick-start-windows--powershell)
 
 A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **1 prompt-suggestion hook** + **ecosystem-wide duplicates audit** packaged for our Claude Code + ecc plugin setup on Windows.
 
@@ -204,6 +208,21 @@ vibe: One-line vibe statement.
 ## Overlap with existing ecc / Anthropic skills
 
 Many fork agents duplicate capabilities already provided by your ecc plugin and Anthropic skills. Skills documented here cross-link to stronger alternatives (e.g., `general-engineering-routing` defers to `ecc:architect` and `ecc:code-reviewer` for those use cases). See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) for the side-by-side mapping.
+
+## Security
+
+See [`SECURITY.md`](SECURITY.md) for the vulnerability reporting policy, scope (PowerShell scripts, hooks, agent personas), and the hardening already in place (settings.json backup, silent-on-error hooks, no outbound network).
+
+## Verification scripts
+
+| Script | What it does | Run on CI |
+|---|---|---|
+| `scripts/lint-skills.ps1` | YAML frontmatter + description + body validation across all 24 skills | ✅ |
+| `scripts/audit-agent-refs.ps1` | Cross-references every backticked slug in `skills/*/SKILL.md` against the actual 179 agent files (catches typos, stale refs, renamed agents) | ✅ |
+| `scripts/show-skill-stats.ps1` | Reads the local telemetry log and reports fire counts per skill | — |
+| `scripts/install-hooks-in-settings.ps1` | Idempotent registration of UserPromptSubmit + PreToolUse(Skill) hooks in `~/.claude/settings.json` with backup/rollback | — |
+
+External skill names referenced from routing tables without a namespace prefix (e.g. built-in `/review`, `internal-comms`) are whitelisted in [`scripts/external-skill-refs.txt`](scripts/external-skill-refs.txt) so the audit treats them as resolved.
 
 ## License
 
