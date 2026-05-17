@@ -1,5 +1,8 @@
 # Agency Agents (Fork)
 
+[![Lint Skills](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **1 prompt-suggestion hook** + **ecosystem-wide duplicates audit** packaged for our Claude Code + ecc plugin setup on Windows.
 
 ## What changed vs upstream
