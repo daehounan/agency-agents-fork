@@ -42,7 +42,7 @@
 
 .EXAMPLE
     .\scripts\install.ps1
-    Install all 178 agents to ~/.claude/agents.
+    Install 163 agents + 16 strategy playbook docs (179 .md files total) to ~/.claude/agents.
 
 .EXAMPLE
     .\scripts\install.ps1 -Division engineering

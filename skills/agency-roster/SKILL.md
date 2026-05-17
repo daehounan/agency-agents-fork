@@ -1,6 +1,6 @@
 ---
 name: agency-roster
-description: List and discover available specialist agents from the agency-agents fork. Use when the user asks "what agents do I have", "which agent should I use for X", "list the available specialists", "show me the agent roster", or wants to browse capabilities across the 179-agent collection. Also use when uncertain which agent to delegate to and want to ground the choice in the actual installed roster.
+description: List and discover available specialist agents from the agency-agents fork. Use when the user asks "what agents do I have", "which agent should I use for X", "list the available specialists", "show me the agent roster", or wants to browse capabilities across the 163-agent collection. Also use when uncertain which agent to delegate to and want to ground the choice in the actual installed roster.
 ---
 
 # Agency Roster Skill
@@ -14,7 +14,7 @@ When this skill activates, help the user discover and choose specialist agents.
 3. Recommend the best match with a one-sentence rationale.
 4. If multiple match, propose calling them in parallel.
 
-## Roster overview (179 agents, 15 divisions)
+## Roster overview (163 agents, 14 divisions + 16 strategy playbooks)
 
 - **academic** (5): anthropologist, geographer, historian, narratologist, psychologist
 - **design** (8): UI/UX designer, brand guardian, visual storyteller, whimsy injector, etc.
@@ -27,10 +27,11 @@ When this skill activates, help the user discover and choose specialist agents.
 - **project-management** (6): studio producer, project shepherd, studio ops, experiment tracker, senior PM, Jira steward
 - **sales** (8): outbound, discovery, deal strategist, sales engineer, proposal, pipeline, account, sales coach
 - **spatial-computing** (6): XR interface, visionOS, macOS Metal, WebXR, cockpit, terminal integration
-- **specialized** (36): orchestrator, LSP, AP, blockchain audit, compliance, healthcare CS, hospitality, legal vertical, real estate, mortgage, **Korean Business Navigator**, **Japanese Business Navigator**, etc.
-- **strategy** (16): full strategy stack
+- **specialized** (37): orchestrator, LSP, AP, blockchain audit, compliance, healthcare CS, hospitality, legal vertical, real estate, mortgage, **Korean Business Navigator**, **Japanese Business Navigator**, etc.
 - **support** (6): support responder, analytics, finance tracker, infra, legal compliance, exec summary
 - **testing** (8): evidence collector, reality checker, performance benchmarker, API tester, accessibility auditor, etc.
+
+Plus **strategy/** — 16 NEXUS playbook documents (not agents, no frontmatter): EXECUTIVE-BRIEF, QUICKSTART, nexus-strategy, 7 phase playbooks, 4 scenario runbooks, 2 coordination docs. Routed via `strategy-nexus` skill, not the Agent tool.
 
 ## When NOT to use
 

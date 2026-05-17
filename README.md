@@ -2,12 +2,15 @@
 
 [![Lint Skills](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Agents](https://img.shields.io/badge/agents-179-brightgreen.svg)](#division-roster-post-exclusion)
+[![Agents](https://img.shields.io/badge/agents-163-brightgreen.svg)](#division-roster-post-exclusion)
 [![Skills](https://img.shields.io/badge/skills-24-blue.svg)](#skills)
+[![Playbooks](https://img.shields.io/badge/playbooks-16-yellow.svg)](#strategy-playbooks-non-agent)
 [![Security Policy](https://img.shields.io/badge/security-policy-orange.svg)](SECURITY.md)
 [![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell%207%2B-informational.svg)](#quick-start-windows--powershell)
 
-A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **179 specialist agent personas** + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **1 prompt-suggestion hook** + **ecosystem-wide duplicates audit** packaged for our Claude Code + ecc plugin setup on Windows.
+A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 14 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**. Packaged as a user-level Claude Code config bundle for Windows (PowerShell installer).
+
+> **Not (yet) a packaged Claude Code plugin.** The repo is a user-level config bundle: `scripts/install.ps1` copies agents into `~/.claude/agents/` and skills into `~/.claude/skills/`. The `.claude-plugin/` metadata is informational. Plugin-loader conformance (a flat `agents/` directory + `hooks/hooks.json`) is on the roadmap.
 
 ## What changed vs upstream
 
@@ -20,18 +23,17 @@ A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/a
 | UserPromptSubmit hook | Optional regex-based agent-suggestion hook (`hooks/suggest-agents.ps1`) |
 | Windows tooling | PowerShell `install.ps1` / `convert.ps1` / `migrate-ecc.ps1` replace bash scripts |
 | Overlap mapping | See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) — which fork agents duplicate existing ecc plugins |
-| Original count | 200 → 178 (China removed) → 179 (Japanese added) |
+| Original count | 200 markdown files → 178 (China removed) → 179 (Japanese Business Navigator added). Of those 179, **163 are agent personas** (with YAML frontmatter) and **16 are NEXUS strategy playbooks** (documentation, no frontmatter). |
 
 Upstream license (MIT) preserved. See `LICENSE`.
 
 ## Division roster (post-exclusion)
 
-| Division | Count |
+| Division | Agents |
 |---|---|
-| specialized | 36 |
+| specialized | 37 |
 | engineering | 27 |
 | game-development | 20 |
-| strategy | 16 |
 | marketing | 15 |
 | design | 8 |
 | sales | 8 |
@@ -43,12 +45,21 @@ Upstream license (MIT) preserved. See `LICENSE`.
 | academic | 5 |
 | finance | 5 |
 | product | 5 |
-| **Total** | **178** |
+| **Agent total** | **163** |
+
+## Strategy playbooks (non-agent)
+
+The `strategy/` directory contains **16 NEXUS engagement documents** (not agents — no YAML frontmatter, not loadable as personas). They are referenced by the `strategy-nexus` routing skill:
+
+- `EXECUTIVE-BRIEF.md`, `QUICKSTART.md`, `nexus-strategy.md`
+- `playbooks/phase-{0..6}-*.md` — 7 phase playbooks (discovery → operate)
+- `runbooks/scenario-{enterprise-feature, incident-response, marketing-campaign, startup-mvp}.md`
+- `coordination/{agent-activation-prompts, handoff-templates}.md`
 
 ## Quick start (Windows / PowerShell)
 
 ```powershell
-# Install all 178 agents to ~/.claude/agents
+# Install 163 agents + 16 playbook docs (179 .md files total) to ~/.claude/agents
 .\scripts\install.ps1
 
 # Install just one division
@@ -147,7 +158,7 @@ vibe: One-line vibe statement.
 
 ## Skills
 
-23 routing skills in `skills/` auto-invoke based on description matching, delegating to the appropriate specialist agent(s). The original 26 were consolidated — duplicates with existing skills (`engineering:*`, `design:*`, `ecc:autonomous-agent-harness`, `ecc:mcp-server-patterns`, etc.) were removed (3 dropped, 3 slimmed) so each routing skill has genuine net-new value.
+24 routing skills in `skills/` auto-invoke based on description matching, delegating to the appropriate specialist agent(s). The original 26 were consolidated — duplicates with existing skills (`engineering:*`, `design:*`, `ecc:autonomous-agent-harness`, `ecc:mcp-server-patterns`, etc.) were removed (3 dropped, 3 slimmed) so each routing skill has genuine net-new value.
 
 ### Consolidation history
 
@@ -198,7 +209,7 @@ vibe: One-line vibe statement.
 | `project-management-routing` | 6 agents | producer / shepherd / Jira / experiment |
 | `support-routing` | 12 agents | support / analytics / infra / civil eng / accounts payable |
 | `strategy-nexus` | NEXUS playbook | 7 phases + 4 scenarios + handoff protocols |
-| `agency-roster` | Discovery utility | Browse the full 179-agent collection |
+| `agency-roster` | Discovery utility | Browse the full 163-agent collection |
 | `skill-routing-arbitrator` | **Meta-skill** | Resolves which skill to use when multiple match (covers all ecosystem clusters) |
 
 ## Hook
@@ -218,7 +229,7 @@ See [`SECURITY.md`](SECURITY.md) for the vulnerability reporting policy, scope (
 | Script | What it does | Run on CI |
 |---|---|---|
 | `scripts/lint-skills.ps1` | YAML frontmatter + description + body validation across all 24 skills | ✅ |
-| `scripts/audit-agent-refs.ps1` | Cross-references every backticked slug in `skills/*/SKILL.md` against the actual 179 agent files (catches typos, stale refs, renamed agents) | ✅ |
+| `scripts/audit-agent-refs.ps1` | Cross-references every backticked slug in `skills/*/SKILL.md` against the actual 163 agent files (catches typos, stale refs, renamed agents) | ✅ |
 | `scripts/show-skill-stats.ps1` | Reads the local telemetry log and reports fire counts per skill | — |
 | `scripts/install-hooks-in-settings.ps1` | Idempotent registration of UserPromptSubmit + PreToolUse(Skill) hooks in `~/.claude/settings.json` with backup/rollback | — |
 

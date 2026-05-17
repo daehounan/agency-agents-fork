@@ -9,18 +9,20 @@
     {
       "name": "agency-agents-fork",
       "source": "./",
-      "description": "179 specialist agents (China excluded) + 24 routing skills + Korean/Japanese Business Navigators. Includes ecosystem-wide skill duplicates audit.",
-      "version": "1.0.0",
+      "description": "163 specialist agent personas + 24 routing skills + 16 NEXUS strategy playbooks. Korean & Japanese Business Navigators, ecosystem-wide skill duplicates audit, Windows PowerShell installer. China-market agents excluded.",
+      "version": "1.1.0",
       "tags": [
         "agents",
         "skills",
+        "subagents",
         "korean-business",
         "japanese-business",
         "game-development",
         "xr",
         "paid-media",
         "sales-methodology",
-        "agency"
+        "agency",
+        "powershell"
       ]
     }
   ]

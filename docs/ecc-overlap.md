@@ -138,8 +138,8 @@ All 🟢 except brand-guardian (🟡 overlaps `brand-voice:*` skills). **Install
 
 - **Net-new divisions** (5 above): ~59 agents
 - **Cherry-picks from overlapping divisions**: ~45 agents
-- **Total recommendation**: ~100 of 178 agents
-- **Skip**: ~78 that duplicate ecc/Anthropic skills
+- **Total recommendation**: ~100 of 163 agents
+- **Skip**: ~63 that duplicate ecc/Anthropic skills
 
 ## Install commands
 
