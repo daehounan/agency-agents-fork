@@ -1,6 +1,7 @@
 # Agency Agents (Fork)
 
 [![Lint Skills](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml)
+[![Build Plugin](https://github.com/daehounan/agency-agents-fork/actions/workflows/build-plugin.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/build-plugin.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Agents](https://img.shields.io/badge/agents-163-brightgreen.svg)](#division-roster-post-exclusion)
 [![Skills](https://img.shields.io/badge/skills-24-blue.svg)](#skills)
@@ -8,9 +9,16 @@
 [![Security Policy](https://img.shields.io/badge/security-policy-orange.svg)](SECURITY.md)
 [![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell%207%2B-informational.svg)](#quick-start-windows--powershell)
 
-A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 14 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**. Packaged as a user-level Claude Code config bundle for Windows (PowerShell installer).
+A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 14 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**.
 
-> **Not (yet) a packaged Claude Code plugin.** The repo is a user-level config bundle: `scripts/install.ps1` copies agents into `~/.claude/agents/` and skills into `~/.claude/skills/`. The `.claude-plugin/` metadata is informational. Plugin-loader conformance (a flat `agents/` directory + `hooks/hooks.json`) is on the roadmap.
+Two install paths supported:
+
+| Path | When | How |
+|---|---|---|
+| **User-level config bundle** | You want agents in `~/.claude/agents/` and skills in `~/.claude/skills/` (no namespacing). Windows. | `pwsh scripts/install.ps1 -WithSkills [-WithHooks]` |
+| **Claude Code plugin** | You want a properly namespaced plugin (`/agency-agents-fork:skill-name`) loadable via the official plugin system. | `pwsh scripts/build-plugin.ps1` → `claude --plugin-dir ./dist/plugin` |
+
+The plugin build flattens the division-organized source into a spec-conformant `agents/` directory plus `hooks/hooks.json` and a clean `.claude-plugin/plugin.json`. The division dirs in the source repo are kept for browsing. See [Plugin build](#plugin-build) below.
 
 ## What changed vs upstream
 
@@ -220,6 +228,47 @@ vibe: One-line vibe statement.
 
 Many fork agents duplicate capabilities already provided by your ecc plugin and Anthropic skills. Skills documented here cross-link to stronger alternatives (e.g., `general-engineering-routing` defers to `ecc:architect` and `ecc:code-reviewer` for those use cases). See [`docs/ecc-overlap.md`](docs/ecc-overlap.md) for the side-by-side mapping.
 
+## Plugin build
+
+`scripts/build-plugin.ps1` produces a Claude Code plugin-loader-conformant build at `dist/plugin/` from the division-organized source.
+
+```powershell
+.\scripts\build-plugin.ps1            # writes dist/plugin/
+.\scripts\build-plugin.ps1 -Verbose_  # show each file as it's copied
+.\scripts\build-plugin.ps1 -Zip       # also emit dist/agency-agents-fork-plugin.zip
+```
+
+Resulting structure:
+
+```
+dist/plugin/
+├── .claude-plugin/plugin.json   # manifest only (no file lists — spec-conformant)
+├── agents/                      # 163 flat .md files (flattened from division dirs)
+├── skills/                      # 24 skill directories with SKILL.md
+├── hooks/
+│   ├── hooks.json               # declares UserPromptSubmit + PreToolUse:Skill
+│   ├── suggest-agents.ps1
+│   └── log-skill-fired.ps1
+└── README.md
+```
+
+Test the build locally:
+
+```powershell
+claude --plugin-dir .\dist\plugin
+```
+
+Or zip the directory and use `--plugin-url`:
+
+```powershell
+Compress-Archive -Path .\dist\plugin\* -DestinationPath .\dist\plugin.zip -Force
+claude --plugin-url file://$(Resolve-Path .\dist\plugin.zip)
+```
+
+The build is verified on every push by [`build-plugin.yml`](.github/workflows/build-plugin.yml) — asserts 163 agents, 24 skills, both JSON manifests parse, then uploads the artifact for 30-day retention.
+
+`dist/` is gitignored. Source-of-truth is the division dirs; the build is reproducible from them.
+
 ## Security
 
 See [`SECURITY.md`](SECURITY.md) for the vulnerability reporting policy, scope (PowerShell scripts, hooks, agent personas), and the hardening already in place (settings.json backup, silent-on-error hooks, no outbound network).
@@ -230,6 +279,7 @@ See [`SECURITY.md`](SECURITY.md) for the vulnerability reporting policy, scope (
 |---|---|---|
 | `scripts/lint-skills.ps1` | YAML frontmatter + description + body validation across all 24 skills | ✅ |
 | `scripts/audit-agent-refs.ps1` | Cross-references every backticked slug in `skills/*/SKILL.md` against the actual 163 agent files (catches typos, stale refs, renamed agents) | ✅ |
+| `scripts/build-plugin.ps1` | Builds a Claude Code plugin-loader-conformant package at `dist/plugin/` (flat `agents/` + `hooks/hooks.json` + clean manifest) | ✅ |
 | `scripts/show-skill-stats.ps1` | Reads the local telemetry log and reports fire counts per skill | — |
 | `scripts/install-hooks-in-settings.ps1` | Idempotent registration of UserPromptSubmit + PreToolUse(Skill) hooks in `~/.claude/settings.json` with backup/rollback | — |
 

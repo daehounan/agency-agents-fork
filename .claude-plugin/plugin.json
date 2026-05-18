@@ -1,7 +1,7 @@
 {
   "name": "agency-agents-fork",
-  "version": "1.1.0",
-  "description": "163 specialist agent personas + 24 routing skills + 16 NEXUS strategy playbooks, packaged as a user-level Claude Code config bundle for Windows (PowerShell installer). Fork of msitarzewski/agency-agents with China-market agents excluded and Korean + Japanese Business Navigators added.",
+  "version": "1.2.0",
+  "description": "163 specialist agent personas + 24 routing skills + 16 NEXUS strategy playbooks + 2 hooks. Fork of msitarzewski/agency-agents with China-market agents excluded and Korean + Japanese Business Navigators added. Installable two ways: as a user-level config bundle via scripts/install.ps1, or as a Claude Code plugin via scripts/build-plugin.ps1 -> dist/plugin/.",
   "author": {
     "name": "andae",
     "url": "https://github.com/daehounan"
@@ -29,10 +29,21 @@
     "agency"
   ],
   "installation": {
-    "type": "user-level-bundle",
-    "note": "This repository is currently a user-level config bundle (copies agents into ~/.claude/agents/ and skills into ~/.claude/skills/ via scripts/install.ps1), NOT yet a packaged Claude Code plugin per the .claude-plugin spec. Plugin loader expects agents/ and skills/ directories at plugin root; here they live in 15 division directories (academic/, design/, engineering/, ...). To use, clone and run scripts/install.ps1. See README.md.",
-    "windows_installer": "scripts/install.ps1",
-    "hook_installer": "scripts/install-hooks-in-settings.ps1"
+    "modes": {
+      "user_level_bundle": {
+        "description": "Copies agents into ~/.claude/agents/ and skills into ~/.claude/skills/ — no namespacing, immediately usable",
+        "command": "pwsh scripts/install.ps1 -WithSkills",
+        "with_hooks": "pwsh scripts/install.ps1 -WithSkills -WithHooks",
+        "hook_installer": "scripts/install-hooks-in-settings.ps1"
+      },
+      "plugin_build": {
+        "description": "Generates a Claude Code plugin-loader-conformant directory at dist/plugin/ (flat agents/ + hooks/hooks.json + clean manifest). Skills become /agency-agents-fork:<name>.",
+        "command": "pwsh scripts/build-plugin.ps1",
+        "test_command": "claude --plugin-dir ./dist/plugin",
+        "zip_option": "pwsh scripts/build-plugin.ps1 -Zip"
+      }
+    },
+    "note": "Source-of-truth is the division-organized .md files (academic/, design/, engineering/, ...). The plugin build flattens them into dist/plugin/agents/; the source layout is preserved for browsing."
   },
   "contents": {
     "agents": 163,

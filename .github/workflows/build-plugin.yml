@@ -1,0 +1,100 @@
+name: Build Plugin
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'academic/**'
+      - 'design/**'
+      - 'engineering/**'
+      - 'finance/**'
+      - 'game-development/**'
+      - 'marketing/**'
+      - 'paid-media/**'
+      - 'product/**'
+      - 'project-management/**'
+      - 'sales/**'
+      - 'spatial-computing/**'
+      - 'specialized/**'
+      - 'strategy/**'
+      - 'support/**'
+      - 'testing/**'
+      - 'skills/**'
+      - 'hooks/**'
+      - 'scripts/build-plugin.ps1'
+      - '.github/workflows/build-plugin.yml'
+  pull_request:
+    paths:
+      - 'academic/**'
+      - 'design/**'
+      - 'engineering/**'
+      - 'finance/**'
+      - 'game-development/**'
+      - 'marketing/**'
+      - 'paid-media/**'
+      - 'product/**'
+      - 'project-management/**'
+      - 'sales/**'
+      - 'spatial-computing/**'
+      - 'specialized/**'
+      - 'support/**'
+      - 'testing/**'
+      - 'skills/**'
+      - 'hooks/**'
+      - 'scripts/build-plugin.ps1'
+      - '.github/workflows/build-plugin.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build-plugin.ps1
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show pwsh version
+        shell: pwsh
+        run: $PSVersionTable | Format-Table -AutoSize
+
+      - name: Build plugin into dist/plugin
+        shell: pwsh
+        run: ./scripts/build-plugin.ps1
+
+      - name: Assert structure
+        shell: pwsh
+        run: |
+          $d = 'dist/plugin'
+          $agentCount = (Get-ChildItem "$d/agents" -File -Filter '*.md').Count
+          $skillCount = (Get-ChildItem "$d/skills" -Directory | Where-Object { Test-Path "$($_.FullName)/SKILL.md" }).Count
+          $hooksOk    = Test-Path "$d/hooks/hooks.json"
+          $manifestOk = Test-Path "$d/.claude-plugin/plugin.json"
+
+          Write-Host "Agents:       $agentCount (expected 163)"
+          Write-Host "Skills:       $skillCount (expected 24)"
+          Write-Host "hooks.json:   $hooksOk"
+          Write-Host "manifest:     $manifestOk"
+
+          if ($agentCount -ne 163) { throw "Expected 163 agents, got $agentCount" }
+          if ($skillCount -ne 24)  { throw "Expected 24 skills, got $skillCount" }
+          if (-not $hooksOk)       { throw "hooks/hooks.json missing" }
+          if (-not $manifestOk)    { throw ".claude-plugin/plugin.json missing" }
+
+      - name: Validate JSON manifests parse
+        shell: pwsh
+        run: |
+          Get-Content dist/plugin/.claude-plugin/plugin.json -Raw | ConvertFrom-Json | Out-Null
+          Get-Content dist/plugin/hooks/hooks.json -Raw | ConvertFrom-Json | Out-Null
+          Write-Host "[OK] Both manifests parse"
+
+      - name: Upload plugin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agency-agents-fork-plugin
+          path: dist/plugin
+          retention-days: 30
