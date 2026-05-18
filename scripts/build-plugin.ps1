@@ -200,4 +200,10 @@ Write-Host "Hooks:        2 (UserPromptSubmit + PreToolUse:Skill via hooks/hooks
 Write-Host "Manifest:     .claude-plugin/plugin.json (v$($pluginJson.version))"
 if ($zipPath) { Write-Host "Zip:          $zipPath" }
 Write-Host ""
-Write-Host "Test:         claude --plugin-dir $OutDir"
+Write-Host "Test (absolute path — works from any cwd):"
+Write-Host "  claude --plugin-dir $outRoot"
+if ($zipPath) {
+    Write-Host ""
+    Write-Host "Test via zip URL:"
+    Write-Host "  claude --plugin-url file://$($zipPath -replace '\\','/')"
+}

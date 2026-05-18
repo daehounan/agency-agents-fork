@@ -252,17 +252,26 @@ dist/plugin/
 └── README.md
 ```
 
-Test the build locally:
+Test the build locally — **run from the repo root** (`cd` first), or use absolute paths:
 
 ```powershell
+# Option A: cd to repo first (recommended)
+cd C:\Users\andae\Projects\agency-agents-fork
+.\scripts\build-plugin.ps1
 claude --plugin-dir .\dist\plugin
+
+# Option B: absolute paths from anywhere (e.g. another terminal session)
+pwsh -NoProfile -File C:\Users\andae\Projects\agency-agents-fork\scripts\build-plugin.ps1
+claude --plugin-dir C:\Users\andae\Projects\agency-agents-fork\dist\plugin
 ```
+
+If you run `.\scripts\build-plugin.ps1` from `C:\Users\andae` (or any directory that isn't the repo root), PowerShell can't find the script — that's not a build failure, it's the wrong working directory. The build script prints the absolute `--plugin-dir` path on success so you can copy-paste it regardless of cwd.
 
 Or zip the directory and use `--plugin-url`:
 
 ```powershell
-Compress-Archive -Path .\dist\plugin\* -DestinationPath .\dist\plugin.zip -Force
-claude --plugin-url file://$(Resolve-Path .\dist\plugin.zip)
+.\scripts\build-plugin.ps1 -Zip
+# emits dist/agency-agents-fork-plugin.zip plus a ready-to-paste --plugin-url command
 ```
 
 The build is verified on every push by [`build-plugin.yml`](.github/workflows/build-plugin.yml) — asserts 163 agents, 24 skills, both JSON manifests parse, then uploads the artifact for 30-day retention.
