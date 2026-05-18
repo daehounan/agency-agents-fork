@@ -32,7 +32,8 @@ Pre-drafted submission text and per-catalog process notes for getting `agency-ag
   - PowerShell installer (`scripts/install.ps1`) targets Windows; optional UserPromptSubmit + PreToolUse hooks for agent-suggestion telemetry, registered idempotently via `install-hooks-in-settings.ps1` with settings backup and rollback
   - Cross-reference audit (`scripts/audit-agent-refs.ps1`) enforced in CI — every backticked agent slug in every SKILL.md resolves to a real agent file (0 orphans)
   - No outbound network calls. No `--dangerously-skip-permissions` required. See [`SECURITY.md`](https://github.com/daehounan/agency-agents-fork/blob/master/SECURITY.md)
-  - Installation: clone the repo, then `pwsh scripts/install.ps1 -WithSkills` (add `-WithHooks` for hook telemetry)
+  - **One-liner install via [v1.2.0 release](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0)** — pre-built plugin zips attached, no clone or build needed: `claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-full.zip` (or pick a scoped subset: `-engineering-finance`, `-marketing-paid-media-sales`, `-game-development`)
+  - Alternative installs: clone + `pwsh scripts/install.ps1 -WithSkills` (user-level bundle, no namespacing), or clone + `pwsh scripts/build-plugin.ps1 -Divisions <list>` (custom scope)
 ```
 
 **PR workflow**
@@ -57,14 +58,19 @@ Navigators added. Includes ecosystem-wide skill duplicates audit (`docs/skill-ec
 mapping ~500 skills into preference clusters, and `skill-routing-arbitrator` meta-skill that
 disambiguates across the wider Claude Code ecosystem.
 
+Tagged release available: [v1.2.0](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0)
+ships 4 pre-built plugin zips (full 163-agent + 3 scoped subsets). Install via one-liner:
+`claude --plugin-url <release-asset-url>` — no clone or PowerShell required for users.
+
 Quality / safety checklist (per CONTRIBUTING):
 - Non-promotional: MIT-licensed open source, no paid tier, no SaaS dependencies
 - Standalone value: works as a user-level config bundle independent of any commercial product
-- Social proof: CI lint + cross-reference audit enforced (badges in README), 0 orphans across 24 skills
+- Social proof: 3 CI workflows green (Lint Skills, audit-agent-refs, Build Plugin), 0 orphans across 180 backticked refs, 24/24 skills lint clean
 - No outbound network calls (SECURITY.md scope)
 - Installation works without `--dangerously-skip-permissions`
+- Tagged v1.2.0 release with SHA256-digested artifacts
 
-Resource is at least one week old: yes (initial commits 2026-05-16).
+Resource is at least one week old: yes (initial commits 2026-05-16, v1.2.0 tagged 2026-05-18).
 ```
 
 ---
