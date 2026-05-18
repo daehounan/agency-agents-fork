@@ -233,10 +233,32 @@ Many fork agents duplicate capabilities already provided by your ecc plugin and 
 `scripts/build-plugin.ps1` produces a Claude Code plugin-loader-conformant build at `dist/plugin/` from the division-organized source.
 
 ```powershell
-.\scripts\build-plugin.ps1            # writes dist/plugin/
-.\scripts\build-plugin.ps1 -Verbose_  # show each file as it's copied
-.\scripts\build-plugin.ps1 -Zip       # also emit dist/agency-agents-fork-plugin.zip
+.\scripts\build-plugin.ps1                                # all 163 agents
+.\scripts\build-plugin.ps1 -Divisions finance,engineering # scoped subset (32 agents)
+.\scripts\build-plugin.ps1 -Divisions game-development    # single division (20 agents)
+.\scripts\build-plugin.ps1 -Verbose_                      # show each file as it's copied
+.\scripts\build-plugin.ps1 -Zip                           # also emit dist/agency-agents-fork-plugin.zip
 ```
+
+### About token cost
+
+The full 163-agent bundle's agent description fields sum to ~8k tokens by static estimation, but Claude Code's runtime warning fires at ~22k cumulative — it counts more than just description fields. That's above Claude's recommended 15k budget for plugin-supplied agent metadata, so every turn pays a real overhead.
+
+If you only need a slice of the collection, build a scoped plugin:
+
+| Use case | Command | Agents | Plugin name |
+|---|---|---|---|
+| Game dev only | `-Divisions game-development` | 20 | `agency-agents-fork-game-development` |
+| Engineering + finance | `-Divisions engineering,finance` | 32 | `agency-agents-fork-engineering-finance` |
+| Marketing + paid-media + sales | `-Divisions marketing,paid-media,sales` | 30 | `agency-agents-fork-marketing-paid-media-sales` |
+| Korean/Japanese business prep | `-Divisions specialized` | 37 | `agency-agents-fork-specialized` |
+| Full bundle (default) | (no flag) | 163 | `agency-agents-fork` |
+
+Valid divisions: `academic, design, engineering, finance, game-development, marketing, paid-media, product, project-management, sales, spatial-computing, specialized, support, testing`.
+
+Comma, semicolon, and whitespace all work as separators: `-Divisions finance,engineering` or `-Divisions "finance;engineering;academic"` are both fine.
+
+All 24 routing skills are always included regardless of scope — they're small (~14k chars total) and several route to skills outside the local bundle (e.g. `ecc:*`, `anthropic-skills:*`), so they remain useful even in a slim build.
 
 Resulting structure:
 

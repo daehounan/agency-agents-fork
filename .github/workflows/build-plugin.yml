@@ -92,9 +92,44 @@ jobs:
           Get-Content dist/plugin/hooks/hooks.json -Raw | ConvertFrom-Json | Out-Null
           Write-Host "[OK] Both manifests parse"
 
-      - name: Upload plugin artifact
+      - name: Test -Divisions parameter (scoped build)
+        shell: pwsh
+        run: |
+          ./scripts/build-plugin.ps1 -Divisions finance,engineering -OutDir dist/plugin-scoped
+          $count = (Get-ChildItem 'dist/plugin-scoped/agents' -File -Filter '*.md').Count
+          $manifest = Get-Content 'dist/plugin-scoped/.claude-plugin/plugin.json' -Raw | ConvertFrom-Json
+          Write-Host "Scoped agents: $count (expected 32)"
+          Write-Host "Scoped manifest name: $($manifest.name)"
+          if ($count -ne 32) { throw "Expected 32 scoped agents, got $count" }
+          if ($manifest.name -ne 'agency-agents-fork-engineering-finance') {
+            throw "Expected scoped name 'agency-agents-fork-engineering-finance', got '$($manifest.name)'"
+          }
+
+      - name: Test -Divisions rejects invalid input
+        shell: pwsh
+        run: |
+          $err = $null
+          try {
+            ./scripts/build-plugin.ps1 -Divisions bogus -OutDir dist/plugin-bogus 2>&1 | Out-Null
+            throw "Build should have failed for bogus division"
+          } catch {
+            $err = $_.Exception.Message
+            if ($err -notmatch 'Unknown division') {
+              throw "Expected 'Unknown division' error, got: $err"
+            }
+            Write-Host "[OK] Bogus division correctly rejected: $err"
+          }
+
+      - name: Upload plugin artifact (full)
         uses: actions/upload-artifact@v4
         with:
           name: agency-agents-fork-plugin
           path: dist/plugin
           retention-days: 30
+
+      - name: Upload plugin artifact (scoped sample)
+        uses: actions/upload-artifact@v4
+        with:
+          name: agency-agents-fork-plugin-scoped-sample
+          path: dist/plugin-scoped
+          retention-days: 7
