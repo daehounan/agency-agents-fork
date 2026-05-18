@@ -11,14 +11,26 @@
 
 A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 14 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**.
 
-Two install paths supported:
+Three install paths supported:
 
 | Path | When | How |
 |---|---|---|
+| **Pre-built plugin from release** (recommended) | You just want the plugin, no clone, no build step. | `claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-full.zip` |
 | **User-level config bundle** | You want agents in `~/.claude/agents/` and skills in `~/.claude/skills/` (no namespacing). Windows. | `pwsh scripts/install.ps1 -WithSkills [-WithHooks]` |
-| **Claude Code plugin** | You want a properly namespaced plugin (`/agency-agents-fork:skill-name`) loadable via the official plugin system. | `pwsh scripts/build-plugin.ps1` → `claude --plugin-dir ./dist/plugin` |
+| **Plugin built from source** | You want to customize divisions or hack on the build. | `pwsh scripts/build-plugin.ps1` → `claude --plugin-dir ./dist/plugin` |
 
 The plugin build flattens the division-organized source into a spec-conformant `agents/` directory plus `hooks/hooks.json` and a clean `.claude-plugin/plugin.json`. The division dirs in the source repo are kept for browsing. See [Plugin build](#plugin-build) below.
+
+### Pre-built release assets ([v1.2.0](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0))
+
+| Variant | Agents | URL suffix (under `…/releases/download/v1.2.0/`) |
+|---|---|---|
+| Full bundle | 163 | `agency-agents-fork-v1.2.0-full.zip` |
+| Engineering + finance | 32 | `agency-agents-fork-v1.2.0-engineering-finance.zip` |
+| Marketing + paid-media + sales | 30 | `agency-agents-fork-v1.2.0-marketing-paid-media-sales.zip` |
+| Game development | 20 | `agency-agents-fork-v1.2.0-game-development.zip` |
+
+For other subsets, build locally with [`scripts/build-plugin.ps1 -Divisions <list>`](#plugin-build).
 
 ## What changed vs upstream
 
