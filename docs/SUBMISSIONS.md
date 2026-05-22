@@ -6,11 +6,13 @@ Pre-drafted submission text and per-catalog process notes for getting `agency-ag
 
 | Target | Method | Process | Status |
 |---|---|---|---|
-| **travisvn/awesome-claude-skills** (12.6k★) | PR | Fork → branch → edit README → PR | Draft ready below ⬇️ |
-| **hesreallyhim/awesome-claude-code** (43.9k★) | Web form (no PRs accepted) | Issue form → bot validates → maintainer reviews | Draft ready below ⬇️ |
-| ComposioHQ/awesome-claude-plugins | Hosts plugin source directly | Different pattern (full source copy) | Not a fit |
+| **travisvn/awesome-claude-skills** (12.7k★) | PR | Fork → branch → edit README → PR | **PR #746 OPEN** — awaiting maintainer review |
+| **hesreallyhim/awesome-claude-code** (44.5k★) | Web form (no PRs accepted) | Issue form → bot validates → maintainer reviews | **Issue #1868 closed "not planned"** — 14-day account cooldown active until ~2026-06-04 |
+| **ComposioHQ/awesome-claude-skills** (61.1k★) | PR | Fork → 1-line README edit linking to external repo (validate workflow rejects new folders) | **PR #894 OPEN** (2026-05-21), CI green ✓ — awaiting maintainer review |
+| **VoltAgent/awesome-claude-code-subagents** (20.3k★) | PR | Fork → per-agent .md + category README + plugin.json + marketplace.json → PR | **PR #262 OPEN** (2026-05-21), no required CI — awaiting maintainer review |
+| ComposioHQ/awesome-claude-plugins (1.7k★) | Hosts plugin source directly | Different pattern (full source copy) | Not a fit |
 | rohitg00/awesome-claude-code-toolkit | Hosts toolkit components | Different pattern | Not a fit |
-| Official Anthropic marketplace | In-app form at claude.ai/settings/plugins/submit | Web only, requires login | Defer until repo is plugin-loader-conformant |
+| Official Anthropic marketplace | In-app form at claude.ai/settings/plugins/submit | Web only, requires login | Defer until plugin-loader-conformant (v1.2.0 release now qualifies — retry candidate) |
 
 ---
 
@@ -189,6 +191,35 @@ aware of.
 - Already listed in travisvn/awesome-claude-skills (PR #746) — disclose this if the form asks
 - Demo: README badges (3 green CI workflows) + `scripts/audit-agent-refs.ps1` output (0 orphans) + the release page itself as proof of the build pipeline working
 
+### Outcome (2026-05-21) — closed, account in 14-day cooldown
+
+**Issue #1868** — closed as "not planned" within minutes by `hesreallyhim` personally. Maintainer comment:
+
+> A cooldown period is currently in effect for your account. Submitting during an active cooldown extends the restriction. Please wait at least **14 days** before opening any more submissions. Please review the [CONTRIBUTING guidelines](https://github.com/hesreallyhim/awesome-claude-code/blob/main/CONTRIBUTING.md) and pinned issues before your next submission.
+
+Key facts:
+- Form was filled correctly — all 5 Recommendation Checklist boxes ticked, all required fields present, Specific Prompt example given (Unreal multiplayer routing demo).
+- Account was **already in a cooldown** before this submission. Root cause unknown — possibly tied to an earlier submission on the account, or pattern-based screening. Submitting during that cooldown *extended* it to a fresh 14 days.
+- Labels stuck on the closed issue: `pending-validation`, `resource-submission`. Validation bot never got to run — the cooldown gate is **upstream** of bot validation.
+
+**14-day hold rules** (do NOT violate — repeat offenses extend the cooldown further and can lead to permanent ban):
+1. No new issue / PR / comment on `hesreallyhim/awesome-claude-code` until **2026-06-04** at earliest.
+2. Do not ask "why was I in cooldown" — that itself counts as a submission.
+3. Do not reopen issue #1868.
+4. Do not create a fresh GitHub account to retry — the maintainer screens for that pattern.
+
+**During the 14-day window**:
+- Read [CONTRIBUTING.md](https://github.com/hesreallyhim/awesome-claude-code/blob/main/CONTRIBUTING.md) end-to-end. Look for explicit "we don't accept X" patterns (broad collections / forks / agent bundles).
+- Read all pinned issues in the repo. Maintainer often posts category-level reject notices there.
+- If a category-level reject is documented (e.g. "no agent collections, only individual skills"), retire this submission attempt entirely.
+
+**Retry decision tree** (only after 2026-06-04):
+- CONTRIBUTING.md explicitly rejects agent collections → **don't retry**, redirect to other channels.
+- CONTRIBUTING.md flags fixable issues (length, format, focus) → fix repo first, then retry with narrower framing (e.g. submit only `korean-business` + `japanese-business` as a focused "regional business skill pair" instead of the full 163-agent bundle).
+- Cooldown reason remains unclear → don't retry. Asymmetric downside (further ban / permanent block) vs. upside (one list entry).
+
+**Channels unaffected by the hesreallyhim block**: travisvn PR #746 still OPEN (mergeStateStatus=CLEAN), GitHub Release v1.2.0 live, Reddit / dev.to / X / Hacker News / Discord / other awesome-claude-* lists all fully available.
+
 ---
 
 ## 3. After submission
@@ -212,4 +243,98 @@ If accepted at either list, add the corresponding "Mentioned in Awesome ..." bad
 - Do not open a PR on `hesreallyhim/awesome-claude-code` — they explicitly ban this.
 - Do not submit via `gh issue create` on that repo — same ban.
 - Submitting to both travisvn and hesreallyhim in the same week is fine — they're independent. Do NOT submit to a third list at the same time; let these two play out first. (travisvn PR #746 is already open at the time of writing.)
+- **Do not re-submit to hesreallyhim until 2026-06-04 at earliest.** Issue #1868 was closed as "not planned" and the account is in a 14-day cooldown — any new submission, comment, or reopen attempt extends the restriction (see Section 2 → Outcome). Channel is dead for at least two weeks.
 - Do not bump the version in `.claude-plugin/plugin.json` purely for submission churn. Bump only on real changes.
+
+---
+
+## 5. Other awesome-list targets (scouted 2026-05-21)
+
+After the hesreallyhim block, scouted the remaining awesome-claude-* ecosystem via `gh search repos "awesome claude" --limit 30`. 13 active curated lists found. Triaged by fit + maintainer activity + submission friction:
+
+### Tier 1 — recommended next moves
+
+| Repo | ★ | Pattern | Submission cost | Verdict |
+|---|---|---|---|---|
+| **ComposioHQ/awesome-claude-skills** | 61.1k | PR — folder + SKILL.md + 1 README line | Low | **Submit `agency-agents-fork` as a single bundled entry under "Development & Code Tools" (great_cto precedent)** |
+| **VoltAgent/awesome-claude-code-subagents** | 20.3k | PR — per-agent .md + 3 file updates + 2 version bumps | Medium | **Submit Korean + Japanese Business Navigator as two separate PRs to `categories/08-business-product/`** |
+
+#### 5a. ComposioHQ/awesome-claude-skills (61.1k★, created 2025-10-17)
+
+**Why prioritize**: largest reach, daily merge cadence, no anti-spam friction, [`great_cto`](https://github.com/avelikiy/great_cto) entry sets a perfect precedent — also a Claude Code plugin with 7 subagents, also a multi-agent SDLC orchestrator. Our bundle fits the same shelf.
+
+**Legitimacy check passed**: 6,663 forks + 409 watchers + steady stream of external-contributor PRs merged daily (verified 2026-05-22 via `gh pr list`). Not a star-bombed shell repo.
+
+**Submission target**: README "Skills → Development & Code Tools" subsection, alphabetical order.
+
+**Required PR contents** (CONTRIBUTING.md is outdated — `validate` workflow is the source of truth):
+1. Fork → branch `add-agency-agents-fork`
+2. **README.md change ONLY** — `validate` workflow checks `if (f !== 'README.md') fail('disallowed file changed: ...')`. Do NOT add a new SKILL.md folder despite what CONTRIBUTING.md says. (CONTRIBUTING is documentation drift; the workflow rejects folder adds from external contributors. Internal contributions like `changelog-generator/`, `competitive-ads-extractor/`, etc. were added by maintainers bypassing the workflow.)
+3. Add one README line under "Development & Code Tools" (alphabetical), **linking to an external `https://github.com/...` URL** (relative `./folder/` links fail the workflow's "must link to external URL" check):
+   ```markdown
+   - [agency-agents-fork](https://github.com/daehounan/agency-agents-fork) - Claude Code plugin: 163 specialist agent personas + 24 routing skills ... *By [@daehounan](https://github.com/daehounan)*
+   ```
+4. **Additional `validate` workflow constraints to respect**:
+   - All edits must sit within the `## Skills` ... `## Getting Started` window
+   - URL must be `https://` (not relative or `http`)
+   - URL host must NOT end in `composio.dev` or `anthropic.com` (internal hosts blocked)
+   - No `crypto|cryptocurrency|web3|blockchain|nft|defi|token|wallet|solana|ethereum|bitcoin` keywords anywhere on the added line
+   - Bullet must be alphabetically positioned relative to its immediate neighbors (case-insensitive)
+5. PR title: `Add agency-agents-fork skill`
+6. PR description: real-world use case (multi-domain agency / consulting projects needing instant access to specialist personas), differentiators vs `great_cto` (broader scope + regional Korean/Japanese coverage), attribution (msitarzewski upstream fork link), proof points (3 green CI workflows, v1.2.0 release).
+
+**Lesson learned 2026-05-21**: First push followed CONTRIBUTING.md literally and added `agency-agents-fork/SKILL.md` folder + relative README link. `validate` workflow failed in 5s. Fix was to remove the folder, change link to `https://github.com/daehounan/agency-agents-fork`, amend commit, force-push. Workflow re-ran and passed in 5s. **Always read the validate.yml workflow before assuming CONTRIBUTING.md is current.**
+
+**Risk profile**: low. No cooldown system observed. Rejection downside ≈ rewritten PR or polite close, not account-wide ban.
+
+#### 5b. VoltAgent/awesome-claude-code-subagents (20.3k★, created 2025-07-30)
+
+**Why prioritize**: 20k★ category match — they literally curate "subagents", which is our primary deliverable. PRs from external contributors merged as recently as 2026-05-20.
+
+**Caveat**: Heavier submission. Per [CONTRIBUTING.md](https://github.com/VoltAgent/awesome-claude-code-subagents/blob/main/CONTRIBUTING.md), each agent needs:
+1. New `.md` file under `categories/<N>-<cat>/`
+2. Main `README.md` updated (alphabetical link)
+3. Category `README.md` updated (Available Subagents + Quick Selection Guide + Tech Stacks)
+4. `categories/<cat>/.claude-plugin/plugin.json` version bump
+5. `.claude-plugin/marketplace.json` matching version bump
+
+Five file updates per agent. So **do NOT submit all 163** — pick the 1–2 with no public equivalent.
+
+**Submission strategy** — two separate PRs:
+
+- **PR 1**: `Add korean-business-navigator subagent` → `categories/08-business-product/korean-business-navigator.md`
+- **PR 2**: `Add japanese-business-navigator subagent` → `categories/08-business-product/japanese-business-navigator.md`
+
+Each `.md` is the existing agent definition from `specialized/specialized-korean-business-navigator.md` and `specialized/specialized-japanese-business-navigator.md`, lightly adapted to VoltAgent's template if needed.
+
+**Risk profile**: low. Heavier lift but high signal — VoltAgent's audience is exactly the people who'd want a Korean/Japanese cultural intelligence subagent.
+
+### Tier 2 — defer, evaluate after Tier 1 lands
+
+| Repo | ★ | Pattern | Notes |
+|---|---|---|---|
+| BehiSecc/awesome-claude-skills | 9.2k | Curated list | Need to scout PR cadence |
+| langgptai/awesome-claude-prompts | 5.1k | Prompts focus | Partial fit (skills route to prompts) |
+| ccplugins/awesome-claude-code-plugins | 798 | Plugins specifically | v1.2.0 release fits |
+| webfuse-com/awesome-claude | 1.5k | Broad list | Lower priority |
+| karanb192/awesome-claude-skills | 340 | "50+ verified" skills | Smaller reach |
+| JSONbored/awesome-claude (HeyClaude) | 244 | Marketplace registry | Different distribution model |
+
+### Tier 3 — skip
+
+- **vijaythecoder/awesome-claude-agents** (4.3k★) — last merge 2025-10-19, abandoned
+- **VoltAgent/awesome-claude-design** (2.3k★) — design only, not a fit
+- **rohitg00/awesome-claude-design** (616★) — design only
+- **josix/awesome-claude-md** (323★) — claude.md files only
+- **milisp/awesome-claude-dxt** (173★) — desktop extensions only
+- **win4r/Awesome-Claude-MCP-Servers** (84★) — MCP servers only
+- **quemsah/awesome-claude-plugins** (735★) — automated metrics, not human-curated
+- **Eyadkelleh/awesome-claude-skills-security** (262★) — security tooling only
+- **LimHyungTae/awesome-claudecode-paper-proofreading** (348★) — proofreading only
+
+### Pacing rules (lessons from hesreallyhim)
+
+1. **Open at most one new submission per week.** Watch for cooldown signals before opening a second on the same repo.
+2. **Read CONTRIBUTING.md end-to-end before any PR.** Both ComposioHQ and VoltAgent have explicit rules we just verified.
+3. **Asymmetric downside**: a rejected PR on a reasonable awesome-list = polite close. A rejected submission on a strict-policy list (hesreallyhim) = account-wide cooldown extension. **Prefer Tier 1 PR-based lists.**
+4. **Do NOT use `gh` CLI on hesreallyhim** even for read-only operations from this account — pattern detection may flag and extend the cooldown.
