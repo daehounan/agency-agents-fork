@@ -136,35 +136,58 @@ Security disclosure:
   no prompt content, no arg values.
 - SECURITY.md documents the vulnerability reporting process and supported severity tiers.
 
-Installation (Windows / PowerShell 7+):
-  git clone https://github.com/daehounan/agency-agents-fork
-  cd agency-agents-fork
-  pwsh scripts/install.ps1 -WithSkills        # agents + skills
-  pwsh scripts/install.ps1 -WithSkills -WithHooks   # + hooks
+Installation:
+
+  Easiest — one-liner via v1.2.0 release (no clone, no PowerShell):
+    claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-full.zip
+
+  Or pick a scoped subset (smaller token footprint):
+    -engineering-finance      (32 agents,  205 KB,  ~1.7k description tokens)
+    -marketing-paid-media-sales (30 agents, 161 KB, ~1.7k tokens)
+    -game-development         (20 agents,  144 KB, ~0.8k tokens)
+  Full bundle is 163 agents, 873 KB, ~8.4k description tokens (~22k at Claude runtime).
+
+  Or clone-and-install (Windows / PowerShell 7+):
+    git clone https://github.com/daehounan/agency-agents-fork
+    cd agency-agents-fork
+    pwsh scripts/install.ps1 -WithSkills        # user-level bundle, no namespacing
+    pwsh scripts/install.ps1 -WithSkills -WithHooks   # + hooks
+
+  Or clone-and-build a custom scope:
+    pwsh scripts/build-plugin.ps1 -Divisions engineering,finance,marketing
+    claude --plugin-dir ./dist/plugin
 
 Uninstallation:
-  Remove-Item ~/.claude/agents/<file>           # per agent, or
-  Remove-Item ~/.claude/agents -Recurse         # all
-  Remove-Item ~/.claude/skills/<dir> -Recurse   # per skill
-  Then remove the hooks block from ~/.claude/settings.json (a .bak file from install time
-  is at ~/.claude/settings.json.bak-<timestamp> if you want to restore).
+  For release-URL installs: `claude plugin disable agency-agents-fork`
+  For user-level bundle: remove ~/.claude/agents/<file> and ~/.claude/skills/<dir>
+  Hooks: remove the entries from ~/.claude/settings.json (a .bak file from install
+  time is at ~/.claude/settings.json.bak-<timestamp> if you want to restore).
 
-Validation: scripts/lint-skills.ps1 and scripts/audit-agent-refs.ps1 both run on every push
-in GitHub Actions (Lint Skills badge on the README links to the workflow). Both currently
-green. Try it: clone the repo, run pwsh scripts/lint-skills.ps1 and watch all 24 skills pass.
+Validation: three CI workflows on every push to master — Lint Skills (24/24 pass),
+audit-agent-refs (0 orphans across 180 backticked refs), and Build Plugin (asserts
+163 agents + 24 skills + 2 hooks produced cleanly). All currently green; badges in
+README link to each workflow. v1.2.0 release ships 4 pre-built plugin zips with
+SHA256-digested artifacts.
 
-This is a collection, not a single focused tool. The maintainer's CONTRIBUTING note about
-preferring focused resources is acknowledged — if too broad, please consider listing just
-the Korean/Japanese Business Navigator pair, or just the skill-routing-arbitrator meta-skill,
-both of which have no public equivalent that I know of.
+Try it: `claude --plugin-url <release-url-above>` — Claude Code v2.1.143+ will load
+the plugin, surface its 163 agents and 24 skills in `/plugins`, and (per v2.1.143
+release notes) display the projected per-turn token cost.
+
+This is a collection, not a single focused tool. The maintainer's CONTRIBUTING note
+about preferring focused resources is acknowledged — if too broad, please consider
+listing just the Korean/Japanese Business Navigator pair, or just the
+skill-routing-arbitrator meta-skill, both of which have no public equivalent I'm
+aware of.
 ```
 
 **Other form fields**:
-- Resource age: at least one week (initial commits 2026-05-16, public 2026-05-17, submission 2026-05-17+)
-- Network calls: None outside the user's own `git pull`/`git push`
+- Resource age: initial commits 2026-05-16, v1.2.0 tagged 2026-05-18, well past the one-week minimum
+- Network calls: None. The only network operation in normal use is `claude --plugin-url <github-releases-url>` which is GitHub-hosted, not a private endpoint
 - Bypass-permissions: Not required
-- Auto-update / network install: None
-- Demo: link to the README badges section (CI green) and `scripts/audit-agent-refs.ps1` output
+- Auto-update / network install: None. Plugin installs are pinned to the v1.2.0 release SHAs
+- Tagged release with artifacts: yes — https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0 (4 zips, SHA256-digested)
+- Already listed in travisvn/awesome-claude-skills (PR #746) — disclose this if the form asks
+- Demo: README badges (3 green CI workflows) + `scripts/audit-agent-refs.ps1` output (0 orphans) + the release page itself as proof of the build pipeline working
 
 ---
 
@@ -188,5 +211,5 @@ If accepted at either list, add the corresponding "Mentioned in Awesome ..." bad
 
 - Do not open a PR on `hesreallyhim/awesome-claude-code` — they explicitly ban this.
 - Do not submit via `gh issue create` on that repo — same ban.
-- Do not submit to multiple lists simultaneously expecting them all to land. Start with travisvn (fastest), wait for outcome, then escalate to hesreallyhim if accepted there or to other lists if rejected.
+- Submitting to both travisvn and hesreallyhim in the same week is fine — they're independent. Do NOT submit to a third list at the same time; let these two play out first. (travisvn PR #746 is already open at the time of writing.)
 - Do not bump the version in `.claude-plugin/plugin.json` purely for submission churn. Bump only on real changes.

@@ -13,8 +13,19 @@
     to preview every action without writing anything.
 
 .PARAMETER Division
-    Restrict install to one division (e.g. engineering, finance, sales). When omitted, all
-    15 divisions are installed.
+    Restrict install to one division (legacy single-division switch). Prefer -Divisions
+    for multiple. When both are set, -Divisions wins. When neither is set, all 15
+    division directories install (academic, design, engineering, finance,
+    game-development, marketing, paid-media, product, project-management, sales,
+    spatial-computing, specialized, strategy, support, testing).
+
+.PARAMETER Divisions
+    Restrict install to a list of divisions. Mirrors scripts/build-plugin.ps1's
+    -Divisions for UX parity. Accepts comma, semicolon, or whitespace as a separator,
+    so all of these work identically:
+        -Divisions finance,engineering
+        -Divisions "finance;engineering"
+        -Divisions finance engineering
 
 .PARAMETER Target
     Destination directory for agents. Defaults to ~/.claude/agents.
@@ -46,11 +57,16 @@
 
 .EXAMPLE
     .\scripts\install.ps1 -Division engineering
-    Install only the engineering division.
+    Install only the engineering division (legacy single-division flag).
 
 .EXAMPLE
-    .\scripts\install.ps1 -WithSkills -WithHooks
-    Full install: agents + skills + hooks registered in settings.json.
+    .\scripts\install.ps1 -Divisions finance,engineering
+    Install only finance + engineering agents (~32 .md files).
+
+.EXAMPLE
+    .\scripts\install.ps1 -Divisions specialized -WithSkills -WithHooks
+    Install the specialized division (incl. Korean + Japanese Business Navigators)
+    plus all 24 skills plus both hooks.
 
 .EXAMPLE
     .\scripts\install.ps1 -DryRun -WithHooks
@@ -63,6 +79,7 @@
 [CmdletBinding()]
 param(
     [string]$Division = '',
+    [string[]]$Divisions,
     [string]$Target = "$env:USERPROFILE\.claude\agents",
     [string]$SkillsTarget = "$env:USERPROFILE\.claude\skills",
     [switch]$DryRun,
@@ -75,18 +92,45 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$divisions = @(
+$allDivisions = @(
     'academic','design','engineering','finance','game-development',
     'marketing','paid-media','product','project-management','sales',
     'spatial-computing','specialized','strategy','support','testing'
 )
 
-if ($Division -and ($Division -notin $divisions)) {
-    Write-Error "Unknown division '$Division'. Valid: $($divisions -join ', ')"
-    exit 1
+# === Resolve which divisions to install ===
+# Priority: -Divisions (plural, new) > -Division (singular, legacy) > all 15.
+# -Divisions supports comma / semicolon / whitespace separators because
+# pwsh -File from another shell flattens arrays into a single string.
+if ($Divisions) {
+    $expanded = @()
+    foreach ($d in $Divisions) {
+        $expanded += ($d -split '[\s,;]+' | Where-Object { $_ })
+    }
+    $expanded = $expanded | ForEach-Object { $_.Trim().ToLower() }
+    $unknown = $expanded | Where-Object { $_ -notin $allDivisions }
+    if ($unknown) {
+        Write-Error "Unknown division(s): $($unknown -join ', '). Valid: $($allDivisions -join ', ')"
+        exit 1
+    }
+    $toInstall = $expanded
+    $isSubset = $true
+} elseif ($Division) {
+    if ($Division -notin $allDivisions) {
+        Write-Error "Unknown division '$Division'. Valid: $($allDivisions -join ', ')"
+        exit 1
+    }
+    $toInstall = @($Division)
+    $isSubset = $true
+} else {
+    $toInstall = $allDivisions
+    $isSubset = $false
 }
 
-$toInstall = if ($Division) { @($Division) } else { $divisions }
+if ($isSubset) {
+    Write-Host "Scope: $($toInstall -join ', ')  (subset of 15 division directories)"
+    Write-Host ""
+}
 
 $copied = 0
 $skipped = 0

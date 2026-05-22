@@ -82,8 +82,13 @@ The `strategy/` directory contains **16 NEXUS engagement documents** (not agents
 # Install 163 agents + 16 playbook docs (179 .md files total) to ~/.claude/agents
 .\scripts\install.ps1
 
-# Install just one division
+# Install just one division (legacy single-division flag)
 .\scripts\install.ps1 -Division engineering
+
+# Install a scoped subset (multi-division — UX parity with build-plugin.ps1 -Divisions)
+.\scripts\install.ps1 -Divisions engineering,finance
+.\scripts\install.ps1 -Divisions specialized   # Korean + Japanese Business Navigators
+.\scripts\install.ps1 -Divisions "marketing;paid-media;sales"
 
 # Dry run (see what would happen, no copies)
 .\scripts\install.ps1 -DryRun
