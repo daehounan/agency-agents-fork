@@ -1,5 +1,7 @@
 # Agency Agents (Fork)
 
+> **163 Claude Code specialist agents + 24 routing skills, one-line install.** Korean / Japanese business culture navigators · game-dev across Unity / Unreal / Godot / Roblox / Blender · XR / spatial · paid-media · `skill-routing-arbitrator` for disambiguating across the ~500-skill Claude Code ecosystem.
+
 [![Lint Skills](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/lint.yml)
 [![Build Plugin](https://github.com/daehounan/agency-agents-fork/actions/workflows/build-plugin.yml/badge.svg?branch=master)](https://github.com/daehounan/agency-agents-fork/actions/workflows/build-plugin.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -9,7 +11,20 @@
 [![Security Policy](https://img.shields.io/badge/security-policy-orange.svg)](SECURITY.md)
 [![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell%207%2B-informational.svg)](#quick-start-windows--powershell)
 
-A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 14 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**.
+## Install in one line
+
+```
+claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-full.zip
+```
+
+Or grab a smaller scoped subset from the [v1.2.0 release](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0):
+[`engineering-finance`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-engineering-finance.zip) (32 agents) ·
+[`marketing-paid-media-sales`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-marketing-paid-media-sales.zip) (30) ·
+[`game-development`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-game-development.zip) (20).
+
+---
+
+A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 15 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**.
 
 Three install paths supported:
 
