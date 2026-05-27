@@ -8,8 +8,10 @@ Pre-drafted submission text and per-catalog process notes for getting `agency-ag
 |---|---|---|---|
 | **travisvn/awesome-claude-skills** (12.7k★) | PR | Fork → branch → edit README → PR | **PR #746 OPEN** — awaiting maintainer review |
 | **hesreallyhim/awesome-claude-code** (44.5k★) | Web form (no PRs accepted) | Issue form → bot validates → maintainer reviews | **Issue #1868 closed "not planned"** — 14-day account cooldown active until ~2026-06-04 |
-| **ComposioHQ/awesome-claude-skills** (61.1k★) | PR | Fork → 1-line README edit linking to external repo (validate workflow rejects new folders) | **PR #894 OPEN** (2026-05-21), CI green ✓ — awaiting maintainer review |
-| **VoltAgent/awesome-claude-code-subagents** (20.3k★) | PR | Fork → per-agent .md + category README + plugin.json + marketplace.json → PR | **PR #262 OPEN** (2026-05-21), no required CI — awaiting maintainer review |
+| **ComposioHQ/awesome-claude-skills** (61.1k★) | PR | Fork → 1-line README edit linking to external repo (validate workflow rejects new folders) | **PR #894 OPEN** (2026-05-21), CI green ✓, `ready-to-merge` label applied 2026-05-22 — awaiting maintainer queue (stuck 5+ days) |
+| **VoltAgent/awesome-claude-code-subagents** (20.3k★) | PR | Fork → per-agent .md + category README + plugin.json + marketplace.json → PR | **PR #262 CLOSED silently** by @necatiozmen on 2026-05-25 (no comments, no review). Pattern: too-large PR or off-topic for dev-focused catalog. Do not retry. |
+| **BehiSecc/awesome-claude-skills** (9.2k★) | PR | Fork → 1-line README edit (Collections section, append at bottom) | **PR #322 OPEN** (2026-05-27) — maintainer dormant since 2026-04-01, queue depth 10+, low expectation but zero risk |
+| **webfuse-com/awesome-claude** (1.5k★) | PR | Fork → 1-line README edit (⭐ Community Curated Lists section, append at bottom) | **PR #243 OPEN** (2026-05-27) — active maintainer (last merge 2026-05-15), 1-7 day expected response |
 | ComposioHQ/awesome-claude-plugins (1.7k★) | Hosts plugin source directly | Different pattern (full source copy) | Not a fit |
 | rohitg00/awesome-claude-code-toolkit | Hosts toolkit components | Different pattern | Not a fit |
 | Official Anthropic marketplace | In-app form at claude.ai/settings/plugins/submit | Web only, requires login | Defer until plugin-loader-conformant (v1.2.0 release now qualifies — retry candidate) |
