@@ -9,7 +9,8 @@
 [![Skills](https://img.shields.io/badge/skills-24-blue.svg)](#skills)
 [![Playbooks](https://img.shields.io/badge/playbooks-16-yellow.svg)](#strategy-playbooks-non-agent)
 [![Security Policy](https://img.shields.io/badge/security-policy-orange.svg)](SECURITY.md)
-[![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell%207%2B-informational.svg)](#quick-start-windows--powershell)
+[![Cross-platform](https://img.shields.io/badge/install-macOS%20·%20Linux%20·%20Windows-informational.svg)](#install-in-one-line)
+[![Tooling](https://img.shields.io/badge/tooling-PowerShell%207%2B-lightgrey.svg)](#quick-start-windows--powershell)
 
 ## Install in one line
 
@@ -21,6 +22,8 @@ Or grab a smaller scoped subset from the [v1.3.0 release](https://github.com/dae
 [`engineering-finance`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-engineering-finance.zip) (32 agents) ·
 [`marketing-paid-media-sales`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-marketing-paid-media-sales.zip) (30) ·
 [`game-development`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-game-development.zip) (20).
+
+> **Just want the Korean + Japanese Business Navigators?** → standalone plugin at [`daehounan/k-jp-business-navigators`](https://github.com/daehounan/k-jp-business-navigators) (2 agents, ~374 routing tokens vs full bundle's ~8,400).
 
 ---
 
