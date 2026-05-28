@@ -14,7 +14,7 @@ Pre-drafted submission text and per-catalog process notes for getting `agency-ag
 | **webfuse-com/awesome-claude** (1.5k★) | PR | Fork → 1-line README edit (⭐ Community Curated Lists section, append at bottom) | **PR #243 OPEN** (2026-05-27) — active maintainer (last merge 2026-05-15), 1-7 day expected response |
 | ComposioHQ/awesome-claude-plugins (1.7k★) | Hosts plugin source directly | Different pattern (full source copy) | Not a fit |
 | rohitg00/awesome-claude-code-toolkit | Hosts toolkit components | Different pattern | Not a fit |
-| **Anthropic Marketplace** | Web form at claude.ai/settings/plugins/submit | Web only, requires login. v1.3.0 plugin-loader-conformant. | **Submission staged 2026-05-28** — see Section 6 for pre-filled form values |
+| **Anthropic Marketplace** | Web form at claude.ai/settings/plugins/submit | Web only, requires login. v1.3.0 plugin-loader-conformant. | **Submitted 2026-05-28** — "Plugin submitted for review" confirmation received; awaiting review team |
 
 ---
 
@@ -393,6 +393,25 @@ Each `.md` is the existing agent definition from `specialized/specialized-korean
 - Maintainer queue depth unknown; first-party marketplaces typically respond within 1–7 days
 - If approved → update README badge to "Listed on Anthropic Marketplace"
 - If rejected → log reason here, no cooldown risk (this is a first-party catalog, not a personal awesome-list)
+
+### Submission outcome log
+
+**2026-05-28 13:30 KST** — Submitted via https://claude.ai/settings/plugins/submit.
+
+Form values entered:
+- Link to plugin: `https://github.com/daehounan/agency-agents-fork`
+- Plugin homepage: `https://github.com/daehounan/agency-agents-fork/releases/tag/v1.3.0`
+- Plugin name: `agency-agents-fork`
+- Description: 480-char copy (per Section 6 above)
+- Example use cases: 5 examples covering Korean BN, multi-platform routing, Japanese BN, cross-marketplace disambiguation, scoped install
+- Platforms: ☑ Claude Code only (Cowork unchecked — not tested)
+- License: MIT
+- Privacy policy URL: (blank — no PII collection per SECURITY.md)
+- Submitter email: an.daehoun@gmail.com
+
+Confirmation screen: "Plugin submitted for review. Your plugin submission has been received. The review team will evaluate it and may reach out for additional information."
+
+**Next action**: passive — await Anthropic review team. Check `claude.ai/settings/plugins` > "View submissions" weekly for status changes.
 
 **Anti-spam notes** (none currently known for this catalog, but apply hesreallyhim lessons defensively)
 - Do not crosspost the submission anywhere else within 24h
