@@ -210,7 +210,7 @@ $pluginDesc = if ($isSubset) {
 }
 $pluginJson = [ordered]@{
     name        = $pluginName
-    version     = '1.2.0'
+    version     = '1.3.0'
     description = $pluginDesc
     author      = [ordered]@{
         name = 'andae'

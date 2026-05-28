@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-05-28
+
+Distribution + onboarding release. Bundles ~8 commits since v1.2.0 focused on inbound-traffic conversion (README polish, examples, token budget transparency) and external contributor enablement (CHANGELOG, CONTRIBUTING, submission tracking).
+
 ### Added
 - `examples/` folder backported from upstream — 5 multi-agent workflow walkthroughs (`workflow-startup-mvp`, `workflow-landing-page`, `workflow-book-chapter`, `workflow-with-memory`, `nexus-spatial-discovery`) + README
 - Tagline and one-line install above-the-fold in README
@@ -15,10 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/estimate-tokens.ps1` + `docs/TOKEN-BUDGET.md` — static token-cost estimator + budget table per division
 - Repo metadata polish — GitHub description rewritten, homepage set to v1.2.0 release, topics expanded 8 → 20
 - `docs/SUBMISSIONS.md` Section 5 — Tier 2 awesome-list submission scout + outcome of hesreallyhim issue #1868
+- v1.2.0 release URL surfaced as third install path in README
 
 ### Fixed
 - README division count: "14 divisions" corrected to "15 divisions"
 - Marketplace submission drafts for travisvn and hesreallyhim improved with v1.2.0 release citations
+- `install.ps1` `-Divisions` flag parity with `build-plugin.ps1`
 
 ## [1.2.0] - 2026-05-18
 
@@ -66,6 +72,7 @@ Initial fork from [msitarzewski/agency-agents](https://github.com/msitarzewski/a
   - Baidu, WeChat, Feishu, Weibo, Bilibili, Alipay, Douyin platform specialists and localization agents
   - Not a regrettable deletion; architectural scope decision for non-China market positioning
 
-[Unreleased]: https://github.com/daehounan/agency-agents-fork/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/daehounan/agency-agents-fork/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/daehounan/agency-agents-fork/releases/tag/v1.3.0
 [1.2.0]: https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0
 [1.0.0]: https://github.com/daehounan/agency-agents-fork/releases/tag/v1.0.0
