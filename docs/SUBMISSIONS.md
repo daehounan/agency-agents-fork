@@ -14,7 +14,7 @@ Pre-drafted submission text and per-catalog process notes for getting `agency-ag
 | **webfuse-com/awesome-claude** (1.5k★) | PR | Fork → 1-line README edit (⭐ Community Curated Lists section, append at bottom) | **PR #243 OPEN** (2026-05-27) — active maintainer (last merge 2026-05-15), 1-7 day expected response |
 | ComposioHQ/awesome-claude-plugins (1.7k★) | Hosts plugin source directly | Different pattern (full source copy) | Not a fit |
 | rohitg00/awesome-claude-code-toolkit | Hosts toolkit components | Different pattern | Not a fit |
-| Official Anthropic marketplace | In-app form at claude.ai/settings/plugins/submit | Web only, requires login | Defer until plugin-loader-conformant (v1.2.0 release now qualifies — retry candidate) |
+| **Anthropic Marketplace** | Web form at claude.ai/settings/plugins/submit | Web only, requires login. v1.3.0 plugin-loader-conformant. | **Submission staged 2026-05-28** — see Section 6 for pre-filled form values |
 
 ---
 
@@ -340,3 +340,61 @@ Each `.md` is the existing agent definition from `specialized/specialized-korean
 2. **Read CONTRIBUTING.md end-to-end before any PR.** Both ComposioHQ and VoltAgent have explicit rules we just verified.
 3. **Asymmetric downside**: a rejected PR on a reasonable awesome-list = polite close. A rejected submission on a strict-policy list (hesreallyhim) = account-wide cooldown extension. **Prefer Tier 1 PR-based lists.**
 4. **Do NOT use `gh` CLI on hesreallyhim** even for read-only operations from this account — pattern detection may flag and extend the cooldown.
+
+---
+
+## 6. Anthropic Marketplace (official, in-app)
+
+**Why now (2026-05-28)**
+- v1.3.0 release ships a plugin-loader-conformant bundle (`.claude-plugin/plugin.json`, flat `agents/`, `hooks/hooks.json`)
+- 4 zip variants attached (full + 3 scoped) with SHA256 digests in release notes
+- 3 CI workflows green; 0 audit orphans; 24/24 skills lint clean
+- Public repo, MIT, no outbound network calls (per `SECURITY.md`)
+
+**Submission URL** (open in browser, logged in to your Anthropic account):
+👉 https://claude.ai/settings/plugins/submit
+
+**Pre-filled form values** (copy into whichever fields the form exposes):
+
+| Field | Value |
+|---|---|
+| Repository URL | `https://github.com/daehounan/agency-agents-fork` |
+| Release tag | `v1.3.0` |
+| Plugin name | `agency-agents-fork` |
+| Author | `daehounan` |
+| Homepage | `https://github.com/daehounan/agency-agents-fork/releases/tag/v1.3.0` |
+| License | `MIT` |
+| Category (if asked) | `Collection` or `Agents` |
+| Install command | `claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-full.zip` |
+
+**Description field** (paste verbatim, 480 chars):
+```
+163 specialist agent personas + 24 routing skills + 16 NEXUS strategy playbooks, packaged as a plugin-loader-conformant bundle. Korean & Japanese Business Navigators (品稟議/根回/회식/카카오톡), game-dev across Unity/Unreal/Godot/Roblox/Blender, XR/visionOS, paid-media (Google/Meta/LinkedIn/TikTok), skill-routing-arbitrator meta-skill for disambiguating across ~500 ecosystem skills. Windows-first PowerShell installer + 4 scoped zip variants. Fork of msitarzewski/agency-agents with China-market agents excluded.
+```
+
+**Differentiators field** (if asked):
+```
+1. Korean + Japanese Business Navigator agents — 품의/nunchi/회식/카카오톡 and 稟議/根回し/KY/飲み会/報連相 deal mechanics for foreign professionals. No equivalent in any other public Claude Code collection.
+
+2. skill-routing-arbitrator meta-skill — deterministic disambiguation across the ~500-skill ecosystem (ecc:*, anthropic-skills:*, engineering:*, design:*, operations:*). Maps preference per cluster (code review, security audit, MCP build, document generation, build error resolution).
+
+3. Cross-reference audit (scripts/audit-agent-refs.ps1) enforced in CI — every backticked agent slug in every SKILL.md resolves to a real agent file. 0 orphans across 180 references.
+
+4. Token budget transparency — docs/TOKEN-BUDGET.md plus scripts/estimate-tokens.ps1 surface per-division token cost. 3 scoped zip variants (engineering+finance, game-development, marketing+paid-media+sales) ship pre-built so users can dodge the 15k-token routing budget.
+```
+
+**Submission workflow**
+1. Open https://claude.ai/settings/plugins/submit in your browser (must be logged in)
+2. Paste the values above into matching form fields
+3. Submit and capture the confirmation URL / submission ID
+4. Update the Status table row + log outcome below
+
+**Post-submission**
+- Maintainer queue depth unknown; first-party marketplaces typically respond within 1–7 days
+- If approved → update README badge to "Listed on Anthropic Marketplace"
+- If rejected → log reason here, no cooldown risk (this is a first-party catalog, not a personal awesome-list)
+
+**Anti-spam notes** (none currently known for this catalog, but apply hesreallyhim lessons defensively)
+- Do not crosspost the submission anywhere else within 24h
+- If the form asks for "previous distribution attempts", honestly list the 4 open awesome-list PRs (ComposioHQ #894, BehiSecc #322, webfuse #243, travisvn #746)
+- Do not re-submit if approved; do not re-submit within 14 days if rejected
