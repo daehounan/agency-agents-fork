@@ -14,13 +14,13 @@
 ## Install in one line
 
 ```
-claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-full.zip
+claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-full.zip
 ```
 
-Or grab a smaller scoped subset from the [v1.2.0 release](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0):
-[`engineering-finance`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-engineering-finance.zip) (32 agents) ·
-[`marketing-paid-media-sales`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-marketing-paid-media-sales.zip) (30) ·
-[`game-development`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-game-development.zip) (20).
+Or grab a smaller scoped subset from the [v1.3.0 release](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.3.0):
+[`engineering-finance`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-engineering-finance.zip) (32 agents) ·
+[`marketing-paid-media-sales`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-marketing-paid-media-sales.zip) (30) ·
+[`game-development`](https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-game-development.zip) (20).
 
 ---
 
@@ -30,20 +30,20 @@ Three install paths supported:
 
 | Path | When | How |
 |---|---|---|
-| **Pre-built plugin from release** (recommended) | You just want the plugin, no clone, no build step. | `claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.2.0/agency-agents-fork-v1.2.0-full.zip` |
+| **Pre-built plugin from release** (recommended) | You just want the plugin, no clone, no build step. | `claude --plugin-url https://github.com/daehounan/agency-agents-fork/releases/download/v1.3.0/agency-agents-fork-v1.3.0-full.zip` |
 | **User-level config bundle** | You want agents in `~/.claude/agents/` and skills in `~/.claude/skills/` (no namespacing). Windows. | `pwsh scripts/install.ps1 -WithSkills [-WithHooks]` |
 | **Plugin built from source** | You want to customize divisions or hack on the build. | `pwsh scripts/build-plugin.ps1` → `claude --plugin-dir ./dist/plugin` |
 
 The plugin build flattens the division-organized source into a spec-conformant `agents/` directory plus `hooks/hooks.json` and a clean `.claude-plugin/plugin.json`. The division dirs in the source repo are kept for browsing. See [Plugin build](#plugin-build) below.
 
-### Pre-built release assets ([v1.2.0](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.2.0))
+### Pre-built release assets ([v1.3.0](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.3.0))
 
-| Variant | Agents | URL suffix (under `…/releases/download/v1.2.0/`) |
+| Variant | Agents | URL suffix (under `…/releases/download/v1.3.0/`) |
 |---|---|---|
-| Full bundle | 163 | `agency-agents-fork-v1.2.0-full.zip` |
-| Engineering + finance | 32 | `agency-agents-fork-v1.2.0-engineering-finance.zip` |
-| Marketing + paid-media + sales | 30 | `agency-agents-fork-v1.2.0-marketing-paid-media-sales.zip` |
-| Game development | 20 | `agency-agents-fork-v1.2.0-game-development.zip` |
+| Full bundle | 163 | `agency-agents-fork-v1.3.0-full.zip` |
+| Engineering + finance | 32 | `agency-agents-fork-v1.3.0-engineering-finance.zip` |
+| Marketing + paid-media + sales | 30 | `agency-agents-fork-v1.3.0-marketing-paid-media-sales.zip` |
+| Game development | 20 | `agency-agents-fork-v1.3.0-game-development.zip` |
 
 For other subsets, build locally with [`scripts/build-plugin.ps1 -Divisions <list>`](#plugin-build).
 

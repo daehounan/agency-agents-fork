@@ -33,7 +33,7 @@ This table estimates **routing tokens** — the description field from YAML fron
 
 ## Picking a Scoped Install
 
-If your per-turn token budget is constrained, use `-Divisions` in `scripts/install.ps1` to install only the divisions you need. Three pre-built scoped variants in v1.2.0 release minimize routing overhead:
+If your per-turn token budget is constrained, use `-Divisions` in `scripts/install.ps1` to install only the divisions you need. Three pre-built scoped variants in the [v1.3.0 release](https://github.com/daehounan/agency-agents-fork/releases/tag/v1.3.0) minimize routing overhead:
 
 ### Option 1: Engineering + Finance (~32 agents, ~2.7K tokens)
 
