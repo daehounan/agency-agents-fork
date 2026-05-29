@@ -25,6 +25,20 @@ Or grab a smaller scoped subset from the [v1.3.0 release](https://github.com/dae
 
 > **Just want the Korean + Japanese Business Navigators?** → standalone plugin at [`daehounan/k-jp-business-navigators`](https://github.com/daehounan/k-jp-business-navigators) (2 agents, ~374 routing tokens vs full bundle's ~8,400).
 
+### What this actually does — Korean / Japanese Business Navigators
+
+> **Q**: 거래처 부장님이 첫 미팅 직후 다음 주 회식 초대했어요. 거절하면 실례인가요?
+>
+> **`korean-business` skill → Korean Business Navigator**:
+> 첫 미팅 직후 회식 초대 = strong-interest 신호. 거절하면 deal cools ~30%. KakaoTalk reply: *"부장님, 초대해주셔서 감사합니다. 다음 주 [요일] 저녁 비워두겠습니다. 잘 부탁드립니다."* → 2차 갈 의향 + 페이스 맞춰 따라가는 protocol 암시. 다음날 차사발 준비, 결재라인이 내려오는 시점 monitor.
+
+> **Q**: 取引先から「検討させていただきます」と返事が来ました。前向きですか?
+>
+> **`japanese-business` skill → Japanese Business Navigator**:
+> 80% 정중한 거절. 「前向きに検討」/「持ち帰って検討」과는 다른 valence. 14일간 후속 연락 없으면 dead — re-engage 시 graceful 言い訳 framing 필요 (e.g. 追加資料 보내는 명분). Golden Week / Obon / 年末年始 직전이면 의도와 무관하게 stall.
+
+Same routing pattern applies to game-dev (Unity/Unreal/Godot/Roblox/Blender), paid-media (Google/Meta/LinkedIn/TikTok), XR (visionOS/WebXR), and the 14 other divisions — ask in plain language, the right specialist auto-fires.
+
 ---
 
 A curated fork of [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) — **163 specialist agent personas** across 15 divisions + **24 routing skills** (consolidated, no duplicates with existing ecc/Anthropic skills) + **16 NEXUS strategy playbooks** + **2 hooks** + **ecosystem-wide duplicates audit**.
