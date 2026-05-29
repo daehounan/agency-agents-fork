@@ -14,7 +14,8 @@ Pre-drafted submission text and per-catalog process notes for getting `agency-ag
 | **webfuse-com/awesome-claude** (1.5k★) | PR | Fork → 1-line README edit (⭐ Community Curated Lists section, append at bottom) | **PR #243 OPEN** (2026-05-27) — active maintainer (last merge 2026-05-15), 1-7 day expected response |
 | ComposioHQ/awesome-claude-plugins (1.7k★) | Hosts plugin source directly | Different pattern (full source copy) | Not a fit |
 | rohitg00/awesome-claude-code-toolkit | Hosts toolkit components | Different pattern | Not a fit |
-| **Anthropic Marketplace** | Web form at claude.ai/settings/plugins/submit | Web only, requires login. v1.3.0 plugin-loader-conformant. | **Submitted 2026-05-28** — "Plugin submitted for review" confirmation received; awaiting review team |
+| **Anthropic Marketplace** (agency-agents-fork) | Web form at claude.ai/settings/plugins/submit | Web only, requires login. v1.3.0 plugin-loader-conformant. | **Submitted 2026-05-28** — "Plugin submitted for review" confirmation received; awaiting review team |
+| **Anthropic Marketplace** (k-jp-business-navigators) | Web form at claude.ai/settings/plugins/submit | Separate submission for the standalone K+J spin-out. v1.0.0 release. | **Submitted 2026-05-29** — "Plugin submitted for review" confirmation received; awaiting review team. Distinct audience (Korea/Japan business pros), much smaller (~374 routing tokens vs full bundle's 8,400). |
 
 ---
 
